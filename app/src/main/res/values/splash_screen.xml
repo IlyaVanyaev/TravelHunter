@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+    <style name="Theme.App.Start" parent="Theme.SplashScreen">
+        <item name="android:windowBackground" android:scaleType="fitXY">@drawable/splash_screen</item>
+
+        <item name="windowSplashScreenAnimatedIcon">@android:color/transparent</item>
+
+        <item name="postSplashScreenTheme">@style/Base.Theme.TravelHunter</item>
+    </style>
+</resources>
