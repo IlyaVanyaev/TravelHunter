@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@null"
+    tools:context=".fragments.Register">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="350dp"
+        android:layout_height="600dp"
+        app:cardBackgroundColor="@color/dark_blue"
+        app:cardCornerRadius="25dp"
+        app:cardElevation="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" >
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/register_registration"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="30dp"
+                android:text="@string/registration"
+                android:textAlignment="center"
+                android:textColor="@color/white_80"
+                android:textSize="25sp"
+                android:textStyle="italic"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <Button
+                android:id="@+id/register_button"
+                android:layout_width="250dp"
+                android:layout_height="50dp"
+                android:layout_marginBottom="120dp"
+                android:backgroundTint="@color/white_50"
+                android:text="@string/register"
+                android:textColor="@color/dark_blue"
+                android:textSize="20sp"
+
+                android:textStyle="italic"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+
+
+
+
+            <EditText
+                android:id="@+id/register_user_edit"
+                android:layout_width="250dp"
+                android:layout_height="50dp"
+                android:layout_marginBottom="30dp"
+                android:background="@drawable/edit_shape"
+                android:hint="@string/type_name"
+                android:inputType="text"
+                android:textAlignment="center"
+                android:textColor="@color/white_80"
+                app:layout_constraintBottom_toTopOf="@+id/register_password_edit"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+
+            <EditText
+                android:id="@+id/register_password_edit"
+                android:layout_width="230dp"
+                android:layout_height="50dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/edit_shape"
+                android:hint="@string/type_password"
+                android:inputType="textPassword"
+                android:textAlignment="center"
+                android:textColor="@color/white_80"
+                app:layout_constraintBottom_toTopOf="@+id/register_repeat_password_edit"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+
+            <EditText
+                android:id="@+id/register_repeat_password_edit"
+                android:layout_width="230dp"
+                android:layout_height="50dp"
+                android:layout_marginBottom="50dp"
+                android:background="@drawable/edit_shape"
+                android:hint="@string/type_password"
+                android:inputType="textPassword"
+                android:textAlignment="center"
+                android:textColor="@color/white_80"
+                app:layout_constraintBottom_toTopOf="@+id/register_button"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

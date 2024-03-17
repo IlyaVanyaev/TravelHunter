@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">TravelHunter</string>
+
+    <string name="welcome">Добро пожаловать!</string>
+    <string name="registration">Регистрация</string>
+    <string name="sign_in">Войти</string>
+    <string name="register">Зарегистрироваться</string>
+    <string name="type_password">Введите пароль</string>
+    <string name="type_name">Введите имя пользователя</string>
 </resources>
