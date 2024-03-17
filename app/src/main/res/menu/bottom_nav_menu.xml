@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/saved"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:title="@string/saved"
+        android:icon="@drawable/saved"/>
+
+    <item
+        android:id="@+id/flights"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:title="@string/flights"
+        android:icon="@drawable/flight"/>
+
+    <item
+        android:id="@+id/hotels"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:title="@string/hotels"
+        android:icon="@drawable/hotel"/>
+
+    <item
+        android:id="@+id/settings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:title="@string/settings"
+        android:icon="@drawable/account" />
+</menu>
