@@ -17,6 +17,9 @@
             app:exitAnim="@android:anim/fade_out"
             app:popEnterAnim="@android:anim/fade_in"
             app:popExitAnim="@android:anim/fade_out" />
+        <action
+            android:id="@+id/action_signIn_to_saved"
+            app:destination="@id/saved" />
     </fragment>
     <fragment
         android:id="@+id/register"
@@ -30,4 +33,24 @@
             app:exitAnim="@android:anim/fade_out"
             app:popEnterAnim="@android:anim/fade_in" />
     </fragment>
+    <fragment
+        android:id="@+id/saved"
+        android:name="com.example.travelhunter.fragments.Saved"
+        android:label="fragment_saved"
+        tools:layout="@layout/fragment_saved" />
+    <fragment
+        android:id="@+id/hotels"
+        android:name="com.example.travelhunter.fragments.Hotels"
+        android:label="fragment_hotels"
+        tools:layout="@layout/fragment_hotels" />
+    <fragment
+        android:id="@+id/flights"
+        android:name="com.example.travelhunter.fragments.Flights"
+        android:label="fragment_flights"
+        tools:layout="@layout/fragment_flights" />
+    <fragment
+        android:id="@+id/settings"
+        android:name="com.example.travelhunter.fragments.Settings"
+        android:label="fragment_settings"
+        tools:layout="@layout/fragment_settings" />
 </navigation>
