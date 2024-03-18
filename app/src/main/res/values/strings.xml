@@ -21,4 +21,14 @@
 
     <string name="settings">Аккаунт</string>
 
+    <string name="city_from">Откуда</string>
+
+    <string name="city_to">Куда</string>
+
+    <string name="date_to">+ Добавить прямой рейс</string>
+
+    <string name="date_from">+ Добавить обратный рейс</string>
+
+    <string name="search_flights">Найти билеты</string>
+
 </resources>
