@@ -65,7 +65,7 @@
                 android:hint="@string/type_name"
                 android:inputType="text"
                 android:textAlignment="center"
-                android:textColor="@color/white_80"
+                android:textColor="@color/dark_blue"
                 app:layout_constraintBottom_toTopOf="@+id/register_password_edit"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
@@ -80,7 +80,7 @@
                 android:hint="@string/type_password"
                 android:inputType="textPassword"
                 android:textAlignment="center"
-                android:textColor="@color/white_80"
+                android:textColor="@color/dark_blue"
                 app:layout_constraintBottom_toTopOf="@+id/register_repeat_password_edit"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
@@ -95,7 +95,7 @@
                 android:hint="@string/type_password"
                 android:inputType="textPassword"
                 android:textAlignment="center"
-                android:textColor="@color/white_80"
+                android:textColor="@color/dark_blue"
                 app:layout_constraintBottom_toTopOf="@+id/register_button"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
