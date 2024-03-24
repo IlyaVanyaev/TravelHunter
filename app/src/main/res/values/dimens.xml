@@ -3,4 +3,10 @@
     <dimen name="card_corner_radius">25dp</dimen>
 
     <dimen name="default_card_elevation">0dp</dimen>
+
+    <dimen name="settings_text_size">25sp</dimen>
+
+    <dimen name="settings_card_height">60dp</dimen>
+
+    <dimen name="settings_text_margin_top">10dp</dimen>
 </resources>

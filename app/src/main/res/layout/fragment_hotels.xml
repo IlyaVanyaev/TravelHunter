@@ -7,11 +7,97 @@
     tools:context=".fragments.Hotels">
 
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="hotels"
-        android:textSize="50sp"
-        android:textColor="@color/white_80"/>
+    <androidx.cardview.widget.CardView
+        android:id="@+id/hotels_find_place_card"
+        android:layout_width="400dp"
+        android:layout_height="350dp"
+        android:layout_marginTop="170dp"
+        app:cardBackgroundColor="@color/dark_blue"
+        app:cardCornerRadius="@dimen/card_corner_radius"
+        app:cardElevation="@dimen/default_card_elevation"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <EditText
+                android:id="@+id/hotels_city_edit"
+                android:layout_width="300dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="30dp"
+                android:background="@drawable/edit_shape"
+                android:hint="@string/where"
+                android:inputType="text"
+                android:textAlignment="center"
+                android:textColor="@color/dark_blue"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/hotels_in_date"
+                android:layout_width="300dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="50dp"
+                app:cardElevation="@dimen/default_card_elevation"
+                app:cardBackgroundColor="@color/white_80"
+                app:cardCornerRadius="15dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/hotels_city_edit">
+
+                <TextView
+                    android:id="@+id/hotels_to_date_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="10dp"
+                    android:hint="@string/date_in"
+                    android:textAlignment="center"
+                    android:textSize="18sp" />
+
+            </androidx.cardview.widget.CardView>
+
+
+            <EditText
+                android:id="@+id/hotels_guests_edit"
+                android:layout_width="300dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="50dp"
+                android:background="@drawable/edit_shape"
+                android:hint="@string/guests"
+                android:inputType="text"
+                android:textAlignment="center"
+                android:textColor="@color/dark_blue"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/hotels_in_date" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+
+
+
+    <Button
+        android:id="@+id/hotels_button"
+        android:layout_width="250dp"
+        android:layout_height="60dp"
+        android:layout_marginBottom="50dp"
+        android:backgroundTint="@color/white_50"
+        android:text="@string/search_hotels"
+        android:textColor="@color/dark_blue"
+        android:textSize="20sp"
+        android:textStyle="italic"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/hotels_find_place_card" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -19,7 +19,7 @@
 
     <string name="hotels">Отели</string>
 
-    <string name="settings">Аккаунт</string>
+    <string name="settings">Профиль</string>
 
     <string name="city_from">Откуда</string>
 
@@ -31,4 +31,13 @@
 
     <string name="search_flights">Найти билеты</string>
 
+    <string name="search_hotels">Найти отели</string>
+
+    <string name="date_in">+ Добавить дату регистрации</string>
+
+    <string name="where">+ Добавить город</string>
+
+    <string name="guests">Указать количество человек</string>
+
+    <string name="edit_profile">Редактировать</string>
 </resources>
