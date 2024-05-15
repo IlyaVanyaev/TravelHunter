@@ -16,6 +16,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var viewModel: MainViewModel
+    private lateinit var nav: NavHostFragment
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -28,7 +29,7 @@ class MainActivity : AppCompatActivity() {
 
         viewModel = ViewModelProvider(this)[MainViewModel::class.java]
 
-        val nav = supportFragmentManager.findFragmentById(R.id.mainFragmentContainerView) as NavHostFragment
+        nav = supportFragmentManager.findFragmentById(R.id.mainFragmentContainerView) as NavHostFragment
         binding.mainBottomNavigation.setupWithNavController(nav.navController)
 
         //viewModel.setBottomNavVisibility(false)
@@ -38,4 +39,20 @@ class MainActivity : AppCompatActivity() {
             else binding.mainBottomNavigation.visibility = View.GONE
         }
     }
+
+    override fun onBackPressed() {
+        if (nav.navController.currentDestination?.id == R.id.signIn) {
+            finish()
+        }
+
+        else if (viewModel.getBottomNavVisibility.value == false) {
+            super.onBackPressed()
+        }
+
+        else{
+            super.onBackPressed()
+            nav.navController.popBackStack(R.id.saved, false)
+        }
+    }
+
 }

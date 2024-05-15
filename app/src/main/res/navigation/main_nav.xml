@@ -17,7 +17,8 @@
             app:exitAnim="@android:anim/fade_out"
             app:launchSingleTop="true"
             app:popEnterAnim="@android:anim/fade_in"
-            app:popExitAnim="@android:anim/fade_out" />
+            app:popExitAnim="@android:anim/fade_out"
+            app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_signIn_to_saved"
             app:destination="@id/saved"
