@@ -1,19 +1,16 @@
 package com.example.travelhunter.activities
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.view.WindowManager
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupWithNavController
 import com.example.travelhunter.R
 import com.example.travelhunter.databinding.ActivityMainBinding
 import com.example.travelhunter.viewmodels.MainViewModel
-import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
 
@@ -36,7 +33,7 @@ class MainActivity : AppCompatActivity() {
 
         //viewModel.setBottomNavVisibility(false)
 
-        viewModel.get_bottom_nav_visibility.observe(this){
+        viewModel.getBottomNavVisibility.observe(this){
             if (it) binding.mainBottomNavigation.visibility = View.VISIBLE
             else binding.mainBottomNavigation.visibility = View.GONE
         }

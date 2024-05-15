@@ -9,7 +9,7 @@
 
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/saved_recycler_view"
+        android:id="@+id/hotels_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -19,7 +19,7 @@
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/empty_saves"
+        android:id="@+id/empty_hotels"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:visibility="visible"
@@ -33,10 +33,10 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/saved_no_saves_text"
+            android:id="@+id/hotels_no_hotels_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/no_saves"
+            android:text="@string/no_hotels"
             android:textAlignment="center"
             android:textColor="@color/white_80"
             android:textSize="20sp"
@@ -45,7 +45,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <com.airbnb.lottie.LottieAnimationView
-            android:id="@+id/saved_no_saves_image"
+            android:id="@+id/hotels_no_hotels_image"
             android:layout_width="match_parent"
             android:layout_height="300dp"
             app:layout_constraintBottom_toBottomOf="parent"

@@ -74,7 +74,7 @@
                 android:layout_height="50dp"
                 android:layout_marginBottom="30dp"
                 android:background="@drawable/edit_shape"
-                android:hint="@string/type_name"
+                android:hint="@string/type_email"
                 android:inputType="text"
                 android:textAlignment="center"
                 android:textColor="@color/dark_blue"

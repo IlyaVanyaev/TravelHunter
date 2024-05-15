@@ -41,6 +41,8 @@ android {
 
 dependencies {
 
+    implementation ("com.airbnb.android:lottie:6.1.0")
+
     implementation("androidx.core:core-splashscreen:1.0.1")
 
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0")

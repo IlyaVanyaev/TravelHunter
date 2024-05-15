@@ -1,37 +1,30 @@
 package com.example.travelhunter.fragments
 
 import android.app.DatePickerDialog
+import android.icu.util.Calendar
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.ViewModelProvider
+import android.widget.TextView
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
+import androidx.navigation.Navigation
 import com.example.travelhunter.R
 import com.example.travelhunter.databinding.FragmentFlightsBinding
 import com.example.travelhunter.viewmodels.MainViewModel
-import android.icu.util.Calendar
-import android.widget.TextView
-import androidx.fragment.app.activityViewModels
-import com.example.travelhunter.activities.MainActivity
-import java.text.DateFormat
-import java.text.SimpleDateFormat
-import java.time.LocalDateTime
-import java.time.Year
-import java.time.format.DateTimeFormatter
-import java.time.format.DateTimeFormatterBuilder
 import java.util.Locale
 
 
 class Flights : Fragment() {
 
     private lateinit var binding: FragmentFlightsBinding
-    //private val vm: MainViewModel by activityViewModels()
+    private val vm: MainViewModel by activityViewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        //vm = ViewModelProvider(this)[MainViewModel::class.java]
+
     }
 
     override fun onCreateView(
@@ -46,8 +39,12 @@ class Flights : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        if (vm.getBottomNavVisibility.value == false) vm.setBottomNavVisibility(true)
+
         binding.flightsToDate.setOnClickListener { datePicker(binding.flightsToDateText) }
         binding.flightsFromDate.setOnClickListener { datePicker(binding.flightsFromDateText) }
+
+        binding.flightsButton.setOnClickListener { Navigation.findNavController(view).navigate(R.id.action_flights_to_searchFlights) }
     }
 
     private fun datePicker(textView: TextView) {

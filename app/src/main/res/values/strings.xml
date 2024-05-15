@@ -11,7 +11,9 @@
 
     <string name="type_password">Введите пароль</string>
 
-    <string name="type_name">Введите имя пользователя</string>
+    <string name="repeat_password">Повторите пароль</string>
+
+    <string name="type_email">Введите email</string>
 
     <string name="saved">Бронь</string>
 
@@ -40,4 +42,23 @@
     <string name="guests">Указать количество человек</string>
 
     <string name="edit_profile">Редактировать</string>
+
+    <string name="type_name">Ведите Ваше имя</string>
+
+    <string name="type_surname">Введите Вашу фамилию</string>
+
+    <string name="change_password">Изменить пароль</string>
+
+    <string name="save_password">Сохранить пароль</string>
+
+    <string name="change_background">Изменить фон</string>
+
+    <string name="delete_account">Удалить профиль</string>
+
+    <string name="no_saves">Список избранных пуст</string>
+
+    <string name="no_flights">Список авиабилетов пуст</string>
+
+    <string name="no_hotels">Список отелей пуст</string>
+
 </resources>

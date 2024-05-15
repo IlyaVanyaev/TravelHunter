@@ -15,6 +15,7 @@
             app:destination="@id/register"
             app:enterAnim="@android:anim/fade_in"
             app:exitAnim="@android:anim/fade_out"
+            app:launchSingleTop="true"
             app:popEnterAnim="@android:anim/fade_in"
             app:popExitAnim="@android:anim/fade_out" />
         <action
@@ -22,6 +23,7 @@
             app:destination="@id/saved"
             app:enterAnim="@android:anim/fade_in"
             app:exitAnim="@android:anim/fade_out"
+            app:launchSingleTop="true"
             app:popEnterAnim="@android:anim/fade_in"
             app:popExitAnim="@android:anim/fade_out"
             app:popUpTo="@id/signIn"
@@ -37,6 +39,7 @@
             app:destination="@id/signIn"
             app:enterAnim="@android:anim/fade_in"
             app:exitAnim="@android:anim/fade_out"
+            app:launchSingleTop="true"
             app:popEnterAnim="@android:anim/fade_in"
             app:popExitAnim="@android:anim/fade_out"
             app:popUpTo="@id/signIn"
@@ -51,15 +54,66 @@
         android:id="@+id/hotels"
         android:name="com.example.travelhunter.fragments.Hotels"
         android:label="fragment_hotels"
-        tools:layout="@layout/fragment_hotels" />
+        tools:layout="@layout/fragment_hotels" >
+        <action
+            android:id="@+id/action_hotels_to_searchHotels"
+            app:destination="@id/searchHotels"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:launchSingleTop="true"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out"
+            app:popUpTo="@id/hotels" />
+    </fragment>
     <fragment
         android:id="@+id/flights"
         android:name="com.example.travelhunter.fragments.Flights"
         android:label="fragment_flights"
-        tools:layout="@layout/fragment_flights" />
+        tools:layout="@layout/fragment_flights" >
+        <action
+            android:id="@+id/action_flights_to_searchFlights"
+            app:destination="@id/searchFlights"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:launchSingleTop="true"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out"
+            app:popUpTo="@id/flights" />
+    </fragment>
     <fragment
         android:id="@+id/settings"
         android:name="com.example.travelhunter.fragments.Settings"
         android:label="fragment_settings"
-        tools:layout="@layout/fragment_settings" />
+        tools:layout="@layout/fragment_settings" >
+        <action
+            android:id="@+id/action_settings_to_mainSettings"
+            app:destination="@id/mainSettings"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:launchSingleTop="true"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out" />
+        <action
+            android:id="@+id/action_settings_to_signIn"
+            app:destination="@id/signIn"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:launchSingleTop="true"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/mainSettings"
+        android:name="com.example.travelhunter.fragments.MainSettings"
+        android:label="fragment_main_settings"
+        tools:layout="@layout/fragment_main_settings" />
+    <fragment
+        android:id="@+id/searchFlights"
+        android:name="com.example.travelhunter.fragments.SearchFlights"
+        android:label="SearchFlights" />
+    <fragment
+        android:id="@+id/searchHotels"
+        android:name="com.example.travelhunter.fragments.SearchHotels"
+        android:label="SearchHotels" />
 </navigation>

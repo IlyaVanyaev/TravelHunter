@@ -9,4 +9,11 @@
     <dimen name="settings_card_height">60dp</dimen>
 
     <dimen name="settings_text_margin_top">10dp</dimen>
+
+    <dimen name="lower_limit_top_margin">30dp</dimen>
+
+    <dimen name="separate_line_side_margin">20dp</dimen>
+
+    <dimen name="separate_line_top_margin">30dp</dimen>
+
 </resources>

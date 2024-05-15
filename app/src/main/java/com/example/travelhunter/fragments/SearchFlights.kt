@@ -7,19 +7,19 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.airbnb.lottie.LottieDrawable
-import com.example.travelhunter.databinding.FragmentSavedBinding
+import com.example.travelhunter.databinding.FragmentSearchFlightsBinding
 import com.example.travelhunter.viewmodels.MainViewModel
 
 
-class Saved : Fragment() {
+class SearchFlights : Fragment() {
 
+    private lateinit var binding: FragmentSearchFlightsBinding
     private val vm: MainViewModel by activityViewModels()
-
-    private lateinit var binding: FragmentSavedBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        vm.setBottomNavVisibility(false)
     }
 
     override fun onCreateView(
@@ -27,20 +27,19 @@ class Saved : Fragment() {
         savedInstanceState: Bundle?
     ): View {
 
-        binding = FragmentSavedBinding.inflate(inflater, container, false)
+        binding = FragmentSearchFlightsBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        if (vm.getBottomNavVisibility.value == false) vm.setBottomNavVisibility(true)
-
-        vm.playAnimation(binding.savedNoSavesImage, 0.0f, 1.0f, 1.0f, LottieDrawable.INFINITE, LottieDrawable.INFINITE)
+        vm.playAnimation(binding.flightsNoFlightsImage, 0.0f, 1.0f, 1.0f, LottieDrawable.INFINITE, LottieDrawable.INFINITE)
     }
 
     companion object {
+
         @JvmStatic
-        fun newInstance() = Saved()
+        fun newInstance() = SearchFlights()
     }
 }
