@@ -20,6 +20,7 @@ class SearchFlights : Fragment() {
         super.onCreate(savedInstanceState)
 
         vm.setBottomNavVisibility(false)
+        vm.enableCustomBack(false)
     }
 
     override fun onCreateView(
@@ -37,9 +38,4 @@ class SearchFlights : Fragment() {
         vm.playAnimation(binding.flightsNoFlightsImage, 0.0f, 1.0f, 1.0f, LottieDrawable.INFINITE, LottieDrawable.INFINITE)
     }
 
-    companion object {
-
-        @JvmStatic
-        fun newInstance() = SearchFlights()
-    }
 }

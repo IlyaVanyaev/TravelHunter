@@ -18,7 +18,7 @@
             app:launchSingleTop="true"
             app:popEnterAnim="@android:anim/fade_in"
             app:popExitAnim="@android:anim/fade_out"
-            app:popUpToInclusive="true" />
+            app:popUpTo="@id/signIn" />
         <action
             android:id="@+id/action_signIn_to_saved"
             app:destination="@id/saved"
@@ -27,7 +27,7 @@
             app:launchSingleTop="true"
             app:popEnterAnim="@android:anim/fade_in"
             app:popExitAnim="@android:anim/fade_out"
-            app:popUpTo="@id/signIn"
+            app:popUpTo="@id/main_nav"
             app:popUpToInclusive="true" />
     </fragment>
     <fragment
@@ -43,7 +43,7 @@
             app:launchSingleTop="true"
             app:popEnterAnim="@android:anim/fade_in"
             app:popExitAnim="@android:anim/fade_out"
-            app:popUpTo="@id/signIn"
+            app:popUpTo="@id/main_nav"
             app:popUpToInclusive="true" />
     </fragment>
     <fragment
@@ -93,7 +93,8 @@
             app:exitAnim="@android:anim/fade_out"
             app:launchSingleTop="true"
             app:popEnterAnim="@android:anim/fade_in"
-            app:popExitAnim="@android:anim/fade_out" />
+            app:popExitAnim="@android:anim/fade_out"
+            app:popUpTo="@id/settings" />
         <action
             android:id="@+id/action_settings_to_signIn"
             app:destination="@id/signIn"
@@ -102,6 +103,7 @@
             app:launchSingleTop="true"
             app:popEnterAnim="@android:anim/fade_in"
             app:popExitAnim="@android:anim/fade_out"
+            app:popUpTo="@id/main_nav"
             app:popUpToInclusive="true" />
     </fragment>
     <fragment

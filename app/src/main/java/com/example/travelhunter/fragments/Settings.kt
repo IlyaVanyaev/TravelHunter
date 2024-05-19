@@ -37,14 +37,12 @@ class Settings : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         if (vm.getBottomNavVisibility.value == false) vm.setBottomNavVisibility(true)
+        if (vm.getCustomBack.value == false) vm.enableCustomBack(true)
 
         binding.settingsProfileEditButton.setOnClickListener { Navigation.findNavController(view).navigate(R.id.action_settings_to_mainSettings) }
 
         binding.settingsLogOutButton.setOnClickListener { Navigation.findNavController(view).navigate(R.id.action_settings_to_signIn) }
     }
 
-    companion object {
-        @JvmStatic
-        fun newInstance() = Settings()
-    }
+
 }

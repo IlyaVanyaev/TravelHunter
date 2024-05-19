@@ -6,21 +6,21 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:title="@string/saved"
-        android:icon="@drawable/saved"/>
+        android:icon="@drawable/saved" />
 
     <item
         android:id="@+id/flights"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:title="@string/flights"
-        android:icon="@drawable/flight"/>
+        android:icon="@drawable/flight" />
 
     <item
         android:id="@+id/hotels"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:title="@string/hotels"
-        android:icon="@drawable/hotel"/>
+        android:icon="@drawable/hotel" />
 
     <item
         android:id="@+id/settings"

@@ -20,6 +20,7 @@ class SearchHotels : Fragment() {
         super.onCreate(savedInstanceState)
 
         vm.setBottomNavVisibility(false)
+        vm.enableCustomBack(false)
     }
 
     override fun onCreateView(
@@ -37,8 +38,4 @@ class SearchHotels : Fragment() {
         vm.playAnimation(binding.hotelsNoHotelsImage, 0.0f, 1.0f, 1.0f, LottieDrawable.INFINITE, LottieDrawable.INFINITE)
     }
 
-    companion object {
-        @JvmStatic
-        fun newInstance() = SearchHotels()
-    }
 }

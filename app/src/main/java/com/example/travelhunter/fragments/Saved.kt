@@ -35,12 +35,10 @@ class Saved : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         if (vm.getBottomNavVisibility.value == false) vm.setBottomNavVisibility(true)
+        if (vm.getCustomBack.value == true) vm.enableCustomBack(false)
 
         vm.playAnimation(binding.savedNoSavesImage, 0.0f, 1.0f, 1.0f, LottieDrawable.INFINITE, LottieDrawable.INFINITE)
     }
 
-    companion object {
-        @JvmStatic
-        fun newInstance() = Saved()
-    }
+
 }

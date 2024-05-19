@@ -11,13 +11,19 @@ class MainViewModel (application: Application) : AndroidViewModel(application) {
     private var bottomNavVisibility = MutableLiveData<Boolean>()
     val getBottomNavVisibility : LiveData<Boolean> = bottomNavVisibility
 
-
+    private  var customBack = MutableLiveData<Boolean>()
+    val getCustomBack : LiveData<Boolean> = customBack
 
 
 
     fun setBottomNavVisibility(visibility: Boolean){
         bottomNavVisibility.value = visibility
     }
+
+    fun enableCustomBack(enable: Boolean){
+        customBack.value = enable
+    }
+
 
 
     fun playAnimation(icon: LottieAnimationView, min:Float, max: Float, speed: Float, repeat: Int, mode:Int){

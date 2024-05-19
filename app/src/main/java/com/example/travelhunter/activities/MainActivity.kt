@@ -3,6 +3,7 @@ package com.example.travelhunter.activities
 import android.os.Bundle
 import android.view.View
 import android.view.WindowManager
+import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.ViewModelProvider
@@ -17,6 +18,16 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var viewModel: MainViewModel
     private lateinit var nav: NavHostFragment
+
+
+    private val callback = object : OnBackPressedCallback(false){
+        override fun handleOnBackPressed() {
+            if (binding.mainBottomNavigation.selectedItemId != R.id.saved){
+                nav.navController.popBackStack(R.id.saved, false)
+            }
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -38,21 +49,12 @@ class MainActivity : AppCompatActivity() {
             if (it) binding.mainBottomNavigation.visibility = View.VISIBLE
             else binding.mainBottomNavigation.visibility = View.GONE
         }
-    }
 
-    override fun onBackPressed() {
-        if (nav.navController.currentDestination?.id == R.id.signIn) {
-            finish()
-        }
+        onBackPressedDispatcher.addCallback(this, callback)
 
-        else if (viewModel.getBottomNavVisibility.value == false) {
-            super.onBackPressed()
-        }
+        viewModel.getCustomBack.observe(this){ callback.isEnabled = it }
 
-        else{
-            super.onBackPressed()
-            nav.navController.popBackStack(R.id.saved, false)
-        }
+
     }
 
 }

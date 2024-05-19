@@ -35,14 +35,12 @@ class SignIn : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        vm.enableCustomBack(false)
 
         binding.signInRegister.setOnClickListener { Navigation.findNavController(view).navigate(R.id.action_signIn_to_register) }
 
         binding.signInButton.setOnClickListener { Navigation.findNavController(view).navigate(R.id.action_signIn_to_saved) }
     }
 
-    companion object {
-        @JvmStatic
-        fun newInstance() = SignIn()
-    }
+
 }

@@ -19,6 +19,7 @@ class MainSettings : Fragment() {
         super.onCreate(savedInstanceState)
 
         vm.setBottomNavVisibility(false)
+        vm.enableCustomBack(false)
     }
 
 
@@ -37,10 +38,4 @@ class MainSettings : Fragment() {
     }
 
 
-
-
-    companion object {
-        @JvmStatic
-        fun newInstance() = MainSettings()
-    }
 }

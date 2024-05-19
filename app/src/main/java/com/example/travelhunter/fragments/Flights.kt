@@ -24,7 +24,6 @@ class Flights : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-
     }
 
     override fun onCreateView(
@@ -40,6 +39,7 @@ class Flights : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         if (vm.getBottomNavVisibility.value == false) vm.setBottomNavVisibility(true)
+        if (vm.getCustomBack.value == false) vm.enableCustomBack(true)
 
         binding.flightsToDate.setOnClickListener { datePicker(binding.flightsToDateText) }
         binding.flightsFromDate.setOnClickListener { datePicker(binding.flightsFromDateText) }
@@ -67,9 +67,5 @@ class Flights : Fragment() {
         datePicker?.show()
     }
 
-    companion object {
 
-        @JvmStatic
-        fun newInstance() = Flights()
-    }
 }
