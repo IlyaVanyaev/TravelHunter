@@ -61,4 +61,6 @@
 
     <string name="no_hotels">Список отелей пуст</string>
 
+    <string name="change_data">Изменить данные</string>
+
 </resources>

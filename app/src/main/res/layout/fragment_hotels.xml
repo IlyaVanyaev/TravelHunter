@@ -4,17 +4,22 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/sea_wave_wallpaper"
     tools:context=".fragments.Hotels">
 
 
     <androidx.cardview.widget.CardView
         android:id="@+id/hotels_find_place_card"
-        android:layout_width="400dp"
+        android:layout_width="0dp"
         android:layout_height="350dp"
+        android:layout_marginStart="10dp"
         android:layout_marginTop="170dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="50dp"
         app:cardBackgroundColor="@color/dark_blue"
         app:cardCornerRadius="@dimen/card_corner_radius"
         app:cardElevation="@dimen/default_card_elevation"
+        app:layout_constraintBottom_toTopOf="@+id/hotels_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -45,9 +50,9 @@
                 android:layout_width="300dp"
                 android:layout_height="50dp"
                 android:layout_marginTop="50dp"
-                app:cardElevation="@dimen/default_card_elevation"
                 app:cardBackgroundColor="@color/white_80"
                 app:cardCornerRadius="15dp"
+                app:cardElevation="@dimen/default_card_elevation"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/hotels_city_edit">
@@ -83,21 +88,35 @@
     </androidx.cardview.widget.CardView>
 
 
-
-
     <Button
         android:id="@+id/hotels_button"
         android:layout_width="250dp"
         android:layout_height="60dp"
-        android:layout_marginBottom="50dp"
+        android:layout_marginBottom="80dp"
         android:backgroundTint="@color/white_50"
         android:text="@string/search_hotels"
         android:textColor="@color/dark_blue"
         android:textSize="20sp"
         android:textStyle="italic"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/main_separate_line"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/hotels_find_place_card" />
+
+    <View
+        android:id="@+id/main_separate_line"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="40dp"
+        android:background="@drawable/edit_shape"
+        android:backgroundTint="@color/white"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

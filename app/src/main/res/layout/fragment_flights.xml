@@ -10,12 +10,16 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/flights_find_place_card"
-        android:layout_width="400dp"
+        android:layout_width="0dp"
         android:layout_height="200dp"
-        android:layout_marginTop="70dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="120dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="40dp"
         app:cardBackgroundColor="@color/dark_blue"
         app:cardCornerRadius="@dimen/card_corner_radius"
         app:cardElevation="@dimen/default_card_elevation"
+        app:layout_constraintBottom_toTopOf="@+id/flights_pick_date_card"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -30,12 +34,13 @@
                 android:id="@+id/flights_switch_button"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:layout_marginEnd="15dp"
+                android:layout_marginStart="300dp"
                 android:background="@null"
                 android:rotation="90"
                 android:src="@drawable/switch_dest"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <EditText
@@ -43,11 +48,13 @@
                 android:layout_width="250dp"
                 android:layout_height="50dp"
                 android:layout_marginTop="25dp"
+                android:layout_marginBottom="25dp"
                 android:background="@drawable/edit_shape"
                 android:hint="@string/city_from"
                 android:inputType="text"
                 android:textAlignment="center"
                 android:textColor="@color/dark_blue"
+                app:layout_constraintBottom_toTopOf="@+id/flights_to_edit"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -57,6 +64,7 @@
                 android:id="@+id/flights_to_edit"
                 android:layout_width="250dp"
                 android:layout_height="50dp"
+                android:layout_marginBottom="35dp"
                 android:background="@drawable/edit_shape"
                 android:hint="@string/city_to"
                 android:inputType="text"
@@ -64,8 +72,7 @@
                 android:textColor="@color/dark_blue"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/flights_from_edit" />
+                app:layout_constraintStart_toStartOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -74,12 +81,15 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/flights_pick_date_card"
-        android:layout_width="400dp"
+        android:layout_width="0dp"
         android:layout_height="200dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="50dp"
         app:cardBackgroundColor="@color/dark_blue"
         app:cardCornerRadius="@dimen/card_corner_radius"
         app:cardElevation="@dimen/default_card_elevation"
+        app:layout_constraintBottom_toTopOf="@+id/flights_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/flights_find_place_card">
@@ -95,9 +105,11 @@
                 android:layout_width="300dp"
                 android:layout_height="50dp"
                 android:layout_marginTop="25dp"
+                android:layout_marginBottom="25dp"
                 android:elevation="@dimen/default_card_elevation"
                 app:cardBackgroundColor="@color/white_80"
                 app:cardCornerRadius="15dp"
+                app:layout_constraintBottom_toTopOf="@+id/flights_from_date"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
@@ -119,13 +131,13 @@
                 android:id="@+id/flights_from_date"
                 android:layout_width="300dp"
                 android:layout_height="50dp"
+                android:layout_marginBottom="35dp"
                 android:elevation="@dimen/default_card_elevation"
                 app:cardBackgroundColor="@color/white_80"
                 app:cardCornerRadius="15dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/flights_to_date">
+                app:layout_constraintStart_toStartOf="parent">
 
 
                 <TextView
@@ -149,15 +161,31 @@
         android:id="@+id/flights_button"
         android:layout_width="250dp"
         android:layout_height="60dp"
-        android:layout_marginBottom="50dp"
+        android:layout_marginBottom="80dp"
         android:backgroundTint="@color/white_50"
         android:text="@string/search_flights"
         android:textColor="@color/dark_blue"
         android:textSize="20sp"
         android:textStyle="italic"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/main_separate_line"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/flights_pick_date_card" />
+
+
+    <View
+        android:id="@+id/main_separate_line"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="40dp"
+        android:background="@drawable/edit_shape"
+        android:backgroundTint="@color/white"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
