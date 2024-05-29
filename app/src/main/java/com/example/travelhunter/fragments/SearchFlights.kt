@@ -20,7 +20,6 @@ class SearchFlights : Fragment() {
         super.onCreate(savedInstanceState)
 
         vm.setBottomNavVisibility(false)
-        vm.enableCustomBack(false)
     }
 
     override fun onCreateView(

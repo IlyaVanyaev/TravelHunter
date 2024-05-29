@@ -20,13 +20,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var nav: NavHostFragment
 
 
-    private val callback = object : OnBackPressedCallback(false){
-        override fun handleOnBackPressed() {
-            if (binding.mainBottomNavigation.selectedItemId != R.id.saved){
-                nav.navController.popBackStack(R.id.saved, false)
-            }
-        }
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,17 +36,11 @@ class MainActivity : AppCompatActivity() {
         nav = supportFragmentManager.findFragmentById(R.id.mainFragmentContainerView) as NavHostFragment
         binding.mainBottomNavigation.setupWithNavController(nav.navController)
 
-        //viewModel.setBottomNavVisibility(false)
 
         viewModel.getBottomNavVisibility.observe(this){
             if (it) binding.mainBottomNavigation.visibility = View.VISIBLE
             else binding.mainBottomNavigation.visibility = View.GONE
         }
-
-        onBackPressedDispatcher.addCallback(this, callback)
-
-        viewModel.getCustomBack.observe(this){ callback.isEnabled = it }
-
 
     }
 

@@ -39,7 +39,6 @@ class Flights : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         if (vm.getBottomNavVisibility.value == false) vm.setBottomNavVisibility(true)
-        if (vm.getCustomBack.value == false) vm.enableCustomBack(true)
 
         binding.flightsToDate.setOnClickListener { datePicker(binding.flightsToDateText) }
         binding.flightsFromDate.setOnClickListener { datePicker(binding.flightsFromDateText) }

@@ -11,8 +11,7 @@ class MainViewModel (application: Application) : AndroidViewModel(application) {
     private var bottomNavVisibility = MutableLiveData<Boolean>()
     val getBottomNavVisibility : LiveData<Boolean> = bottomNavVisibility
 
-    private  var customBack = MutableLiveData<Boolean>()
-    val getCustomBack : LiveData<Boolean> = customBack
+
 
 
 
@@ -20,9 +19,7 @@ class MainViewModel (application: Application) : AndroidViewModel(application) {
         bottomNavVisibility.value = visibility
     }
 
-    fun enableCustomBack(enable: Boolean){
-        customBack.value = enable
-    }
+
 
 
 
