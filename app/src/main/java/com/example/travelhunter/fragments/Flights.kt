@@ -12,7 +12,13 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.Navigation
 import com.example.travelhunter.R
 import com.example.travelhunter.databinding.FragmentFlightsBinding
+import com.example.travelhunter.interfaces.FlightApi
 import com.example.travelhunter.viewmodels.MainViewModel
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 import java.util.Locale
 
 
@@ -20,6 +26,7 @@ class Flights : Fragment() {
 
     private lateinit var binding: FragmentFlightsBinding
     private val vm: MainViewModel by activityViewModels()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,7 +50,12 @@ class Flights : Fragment() {
         binding.flightsToDate.setOnClickListener { datePicker(binding.flightsToDateText) }
         binding.flightsFromDate.setOnClickListener { datePicker(binding.flightsFromDateText) }
 
-        binding.flightsButton.setOnClickListener { Navigation.findNavController(view).navigate(R.id.action_flights_to_searchFlights) }
+        binding.flightsButton.setOnClickListener {
+
+            vm.getFlightsWithoutDate()
+
+            Navigation.findNavController(view).navigate(R.id.action_flights_to_searchFlights)
+        }
     }
 
     private fun datePicker(textView: TextView) {
