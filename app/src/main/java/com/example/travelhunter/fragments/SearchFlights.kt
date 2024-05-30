@@ -37,7 +37,7 @@ class SearchFlights : Fragment() {
         vm.playAnimation(binding.flightsNoFlightsImage, 0.0f, 1.0f, 1.0f, LottieDrawable.INFINITE, LottieDrawable.INFINITE)
 
         vm.getFlightWithoutDate.observe(viewLifecycleOwner){
-            binding.flightsNoFlightsText.text = it.price.toString()
+            binding.flightsNoFlightsText.text = it.data.destination.flight.price.toString()
         }
     }
 

@@ -52,7 +52,8 @@ class Flights : Fragment() {
 
         binding.flightsButton.setOnClickListener {
 
-            vm.getFlightsWithoutDate()
+            val query = vm.setRoute(binding.flightsFromEdit.text.toString(), binding.flightsToEdit.text.toString())
+            vm.getIata(query)
 
             Navigation.findNavController(view).navigate(R.id.action_flights_to_searchFlights)
         }

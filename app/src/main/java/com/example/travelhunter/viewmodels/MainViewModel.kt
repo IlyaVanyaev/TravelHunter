@@ -1,19 +1,25 @@
 package com.example.travelhunter.viewmodels
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.viewModelScope
 import com.airbnb.lottie.LottieAnimationView
-import com.example.travelhunter.data.Flight
+import com.example.travelhunter.data.FlightModel
+import com.example.travelhunter.data.Iata
 import com.example.travelhunter.interfaces.FlightApi
+import com.example.travelhunter.interfaces.IataApi
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import org.json.JSONObject
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
@@ -22,14 +28,18 @@ class MainViewModel (application: Application) : AndroidViewModel(application) {
     private var bottomNavVisibility = MutableLiveData<Boolean>()
     val getBottomNavVisibility : LiveData<Boolean> = bottomNavVisibility
 
-    private var flightWithoutDate = MutableLiveData<Flight>()
-    val getFlightWithoutDate: LiveData<Flight> = flightWithoutDate
+    private var flightWithoutDate = MutableLiveData<FlightModel>()
+    val getFlightWithoutDate: LiveData<FlightModel> = flightWithoutDate
+
+    private var iata = MutableLiveData<Iata>()
+    val getIata: LiveData<Iata> = iata
 
 
     private var interceptor: HttpLoggingInterceptor = HttpLoggingInterceptor()
     private var client: OkHttpClient
     private var retrofit: Retrofit
     private var flightApi: FlightApi
+    private var iataApi: IataApi
     //private  lateinit var flight: Flight
 
 
@@ -47,6 +57,7 @@ class MainViewModel (application: Application) : AndroidViewModel(application) {
             .build()
 
         flightApi = retrofit.create(FlightApi::class.java)
+        iataApi = retrofit.create(IataApi::class.java)
     }
 
     fun setBottomNavVisibility(visibility: Boolean){
@@ -63,19 +74,46 @@ class MainViewModel (application: Application) : AndroidViewModel(application) {
     }
 
 
-    fun setupRetrofit(){
 
-
-
+    fun setRoute(origin: String, destination: String): String{
+        return "$origin $destination"
     }
 
-    fun getFlightsWithoutDate(){
-        CoroutineScope(Dispatchers.IO).launch{
-            val flight = flightApi.getFlight()
-            runBlocking(Dispatchers.Main) {
-                flightWithoutDate.value = flight
+
+    fun getIata(query: String){
+        iataApi.getIATA(query).enqueue(object : Callback<Iata>{
+            override fun onResponse(p0: Call<Iata>, p1: Response<Iata>) {
+                if (p1.isSuccessful){
+
+                    iata.value = p1.body()
+
+                    getFlightsWithoutDate(iata.value!!.originIata.iata, iata.value!!.destinationIata.iata)
+
+                }
             }
-        }
+
+            override fun onFailure(p0: Call<Iata>, p1: Throwable) {
+                TODO("Not yet implemented")
+            }
+
+        })
+    }
+
+    private fun getFlightsWithoutDate(org: String, dest: String){
+
+            flightApi.getFlight(org, dest).enqueue(object : Callback<FlightModel>{
+                override fun onResponse(p0: Call<FlightModel>, p1: Response<FlightModel>) {
+                    if (p1.isSuccessful){
+                        Log.d("RESPONSE BABY", p1.body().toString())
+                        flightWithoutDate.value = p1.body()
+                    }
+                }
+
+                override fun onFailure(p0: Call<FlightModel>, p1: Throwable) {
+                    Log.d("RESPONSE FAILURE BABY", p1.message.toString())
+                }
+
+            })
 
     }
 
