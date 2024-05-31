@@ -57,7 +57,7 @@ class Flights : Fragment() {
             if(binding.flightsFromEdit.text.isNotEmpty() && binding.flightsToEdit.text.isNotEmpty() && (binding.flightsToDateText.text.isNotEmpty() || binding.flightsFromDateText.text.isNotEmpty())){
 
                 val query = vm.setRoute(binding.flightsFromEdit.text.toString(), binding.flightsToEdit.text.toString())
-                vm.getIata(query, true)
+                vm.getIata(query, true, binding.flightsToDateText.text.toString(), binding.flightsFromDateText.text.toString())
                 vm.setWithDate(true)
 
                 Navigation.findNavController(view).navigate(R.id.action_flights_to_searchFlights)
@@ -65,7 +65,7 @@ class Flights : Fragment() {
             else if (binding.flightsFromEdit.text.isNotEmpty() && binding.flightsToEdit.text.isNotEmpty() && (binding.flightsToDateText.text.isEmpty() || binding.flightsFromDateText.text.isEmpty())){
                 val query = vm.setRoute(binding.flightsFromEdit.text.toString(), binding.flightsToEdit.text.toString())
 
-                vm.getIata(query, false)
+                vm.getIata(query, false, binding.flightsToDateText.text.toString(), binding.flightsFromDateText.text.toString())
                 vm.setWithDate(false)
 
                 Navigation.findNavController(view).navigate(R.id.action_flights_to_searchFlights)

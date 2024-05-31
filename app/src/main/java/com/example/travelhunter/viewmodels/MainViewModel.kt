@@ -97,7 +97,7 @@ class MainViewModel (application: Application) : AndroidViewModel(application) {
     }
 
 
-    fun getIata(query: String, withDate: Boolean) {
+    fun getIata(query: String, withDate: Boolean, departDate: String, returnDate: String) {
         iataApi.getIATA(query).enqueue(object : Callback<Iata>{
             override fun onResponse(p0: Call<Iata>, p1: Response<Iata>) {
                 if (p1.isSuccessful){
@@ -109,7 +109,7 @@ class MainViewModel (application: Application) : AndroidViewModel(application) {
                         dateFlightList.value = null
 
                         iata.value?.destinationIata?.let{
-                            getDateFlight(iata.value!!, Constants.API_KEY)
+                            getDateFlight(iata.value!!, Constants.API_KEY, departDate, returnDate)
                         }
                     }
                     else{
@@ -155,8 +155,8 @@ class MainViewModel (application: Application) : AndroidViewModel(application) {
     }
 
 
-    fun getDateFlight(test: Iata, apiKey: String){
-        val url = "https://api.travelpayouts.com/v1/prices/cheap?&depart_date=2024-06-03&return_date=2024-06-05&page=10&origin=${test.originIata.iata}&destination=${test.destinationIata.iata}"
+    fun getDateFlight(test: Iata, apiKey: String, departDate: String, returnDate: String){
+        val url = "https://api.travelpayouts.com/v1/prices/cheap?&depart_date=$departDate&return_date=$returnDate&page=10&origin=${test.originIata.iata}&destination=${test.destinationIata.iata}"
         val queue = Volley.newRequestQueue(getApplication())
         val request =  object: StringRequest(
             Request.Method.GET, url,
@@ -175,6 +175,8 @@ class MainViewModel (application: Application) : AndroidViewModel(application) {
                 headers["x-access-token"] = apiKey
                 return headers
             }
+
+
         }
         queue.add(request)
     }
