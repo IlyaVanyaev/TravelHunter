@@ -3,10 +3,15 @@ package com.example.travelhunter.viewmodels
 import android.annotation.SuppressLint
 import android.app.Application
 import android.util.Log
+import android.widget.Toast
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.airbnb.lottie.LottieAnimationView
+import com.android.volley.Request
+import com.android.volley.toolbox.StringRequest
+import com.android.volley.toolbox.Volley
+import com.example.travelhunter.data.DateFlight
 import com.example.travelhunter.data.FlightModel
 import com.example.travelhunter.data.Iata
 import com.example.travelhunter.interfaces.FlightApi
@@ -32,8 +37,8 @@ class MainViewModel (application: Application) : AndroidViewModel(application) {
     private var flightWithDate = MutableLiveData<FlightModel>()
     val getFlightWithDate: LiveData<FlightModel> = flightWithDate
 
-    private var dateFlightList = MutableLiveData<List<FlightModel>>()
-    val getDateFlightList: LiveData<List<FlightModel>> = dateFlightList
+    private var dateFlightList = MutableLiveData<List<DateFlight>>()
+    val getDateFlightList: LiveData<List<DateFlight>> = dateFlightList
 
     private var iata = MutableLiveData<Iata>()
     val getIata: LiveData<Iata> = iata
@@ -96,7 +101,7 @@ class MainViewModel (application: Application) : AndroidViewModel(application) {
                         dateFlightList.value = null
 
                         iata.value?.destinationIata?.let{
-                            getFlightsWithDate(iata.value!!)
+                            getDateFlight(iata.value!!, "apiKey")
                         }
                     }
                     else{
@@ -114,7 +119,7 @@ class MainViewModel (application: Application) : AndroidViewModel(application) {
     }
 
     @SuppressLint("SuspiciousIndentation")
-    private fun getFlightsWithDate(test: Iata){
+    private fun getFlightsWithoutDate(test: Iata){
 
         val flightList = ArrayList<FlightModel>()
 
@@ -123,10 +128,6 @@ class MainViewModel (application: Application) : AndroidViewModel(application) {
                     if (p1.isSuccessful){
                         Log.d("RESPONSE BABY", p1.body().toString())
 
-                        flightWithDate.value = p1.body()
-
-                        flightWithDate.value?.data?.destination?.let { flightList.add(flightWithDate.value!!) }
-                        dateFlightList.value = flightList
                     }
                 }
 
@@ -135,6 +136,44 @@ class MainViewModel (application: Application) : AndroidViewModel(application) {
                 }
 
             })
+
+    }
+
+
+    fun getDateFlight(test: Iata, apiKey: String){
+        val url = "https://api.travelpayouts.com/v1/prices/cheap?&depart_date=2024-06-03&return_date=2024-06-05&page=10&origin=${test.originIata.iata}&destination=${test.destinationIata.iata}"
+        val queue = Volley.newRequestQueue(getApplication())
+        val request =  object: StringRequest(
+            Request.Method.GET, url,
+            { response ->
+
+                Log.d("RESPONSE BABY", response.toString())
+                parseDateFlight(response)
+
+            },
+            {error ->
+                Log.d("Error response", error.toString())
+                Toast.makeText(getApplication(), "Response error", Toast.LENGTH_SHORT).show()
+            }){
+            override fun getHeaders(): MutableMap<String, String> {
+                val headers = HashMap<String, String>()
+                headers["x-access-token"] = apiKey
+                return headers
+            }
+        }
+        queue.add(request)
+    }
+
+    private fun parseDateFlight(response: String){
+        val flightList = ArrayList<DateFlight>()
+        val json = JSONObject(response)
+        val dateFlight = DateFlight(
+            json.getJSONObject("data").getJSONObject(iata.value?.destinationIata!!.iata).getJSONObject("0").getString("departure_at"),
+            json.getJSONObject("data").getJSONObject(iata.value?.destinationIata!!.iata).getJSONObject("0").getString("return_at"),
+            json.getJSONObject("data").getJSONObject(iata.value?.destinationIata!!.iata).getJSONObject("0").getInt("price")
+        )
+        flightList.add(dateFlight)
+        dateFlightList.value = flightList
 
     }
 

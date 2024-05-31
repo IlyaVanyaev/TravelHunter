@@ -61,6 +61,11 @@ class Flights : Fragment() {
 
                 Navigation.findNavController(view).navigate(R.id.action_flights_to_searchFlights)
             }
+            else if (binding.flightsFromEdit.text.isNotEmpty() && binding.flightsToEdit.text.isNotEmpty() && (binding.flightsToDateText.text.isEmpty() || binding.flightsFromDateText.text.isEmpty())){
+                val query = vm.setRoute(binding.flightsFromEdit.text.toString(), binding.flightsToEdit.text.toString())
+                vm.getIata(query, false)
+                Navigation.findNavController(view).navigate(R.id.action_flights_to_searchFlights)
+            }
             else {
                 Toast.makeText(activity, "block", Toast.LENGTH_SHORT).show()
             }
