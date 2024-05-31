@@ -80,28 +80,35 @@ class MainViewModel (application: Application) : AndroidViewModel(application) {
     }
 
 
-    fun getIata(query: String){
+    fun getIata(query: String, withDate: Boolean) {
         iataApi.getIATA(query).enqueue(object : Callback<Iata>{
             override fun onResponse(p0: Call<Iata>, p1: Response<Iata>) {
                 if (p1.isSuccessful){
 
                     iata.value = p1.body()
 
-                    getFlightsWithoutDate(iata.value!!.originIata.iata, iata.value!!.destinationIata.iata)
+                    if (withDate){
+                        TODO()
+                    }
+                    else{
+                        iata.value?.destinationIata?.let{
+                            getFlightsWithoutDate(iata.value!!)
+                        }
+                    }
 
                 }
             }
 
             override fun onFailure(p0: Call<Iata>, p1: Throwable) {
-                TODO("Not yet implemented")
+                Log.d("RESPONSE FAILURE BABY", p1.message.toString())
             }
 
         })
     }
 
-    private fun getFlightsWithoutDate(org: String, dest: String){
+    private fun getFlightsWithoutDate(test: Iata){
 
-            flightApi.getFlight(org, dest).enqueue(object : Callback<FlightModel>{
+            flightApi.getFlight(test.originIata.iata, test.destinationIata.iata).enqueue(object : Callback<FlightModel>{
                 override fun onResponse(p0: Call<FlightModel>, p1: Response<FlightModel>) {
                     if (p1.isSuccessful){
                         Log.d("RESPONSE BABY", p1.body().toString())
@@ -116,5 +123,6 @@ class MainViewModel (application: Application) : AndroidViewModel(application) {
             })
 
     }
+
 
 }

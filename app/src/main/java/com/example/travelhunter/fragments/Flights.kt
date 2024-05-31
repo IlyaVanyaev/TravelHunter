@@ -3,10 +3,12 @@ package com.example.travelhunter.fragments
 import android.app.DatePickerDialog
 import android.icu.util.Calendar
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.Navigation
@@ -52,10 +54,17 @@ class Flights : Fragment() {
 
         binding.flightsButton.setOnClickListener {
 
-            val query = vm.setRoute(binding.flightsFromEdit.text.toString(), binding.flightsToEdit.text.toString())
-            vm.getIata(query)
+            if(binding.flightsFromEdit.text.isNotEmpty() && binding.flightsToEdit.text.isNotEmpty() && (binding.flightsToDateText.text.isEmpty() || binding.flightsFromDateText.text.isEmpty())){
 
-            Navigation.findNavController(view).navigate(R.id.action_flights_to_searchFlights)
+                val query = vm.setRoute(binding.flightsFromEdit.text.toString(), binding.flightsToEdit.text.toString())
+                vm.getIata(query, false)
+
+                Navigation.findNavController(view).navigate(R.id.action_flights_to_searchFlights)
+            }
+            else {
+                Toast.makeText(activity, "block", Toast.LENGTH_SHORT).show()
+            }
+
         }
     }
 
