@@ -36,7 +36,13 @@ class Hotels : Fragment() {
 
         if (vm.getBottomNavVisibility.value == false) vm.setBottomNavVisibility(true)
 
-        binding.hotelsButton.setOnClickListener { Navigation.findNavController(view).navigate(R.id.action_hotels_to_searchHotels) }
+        binding.hotelsButton.setOnClickListener {
+
+            vm.getHotels(binding.hotelsCityEdit.text.toString())
+
+            Navigation.findNavController(view).navigate(R.id.action_hotels_to_searchHotels)
+
+        }
     }
 
 

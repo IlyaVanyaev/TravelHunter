@@ -15,6 +15,7 @@ import com.example.travelhunter.data.Constants
 import com.example.travelhunter.data.Data
 import com.example.travelhunter.data.DateFlight
 import com.example.travelhunter.data.FlightModel
+import com.example.travelhunter.data.Hotels
 import com.example.travelhunter.data.Iata
 import com.example.travelhunter.interfaces.FlightApi
 import com.example.travelhunter.interfaces.IataApi
@@ -46,6 +47,9 @@ class MainViewModel (application: Application) : AndroidViewModel(application) {
 
     private var withDate = MutableLiveData<Boolean>()
     val getWithDate : LiveData<Boolean> = withDate
+
+    private var hotelLabels = MutableLiveData<List<Hotels>>()
+    val getHotelLabels: LiveData<List<Hotels>> = hotelLabels
 
 
     private var interceptor: HttpLoggingInterceptor = HttpLoggingInterceptor()
@@ -192,6 +196,45 @@ class MainViewModel (application: Application) : AndroidViewModel(application) {
         flightList.add(dateFlight)
         dateFlightList.value = flightList
 
+    }
+
+    fun getHotels(city: String){
+        hotelLabels.value = null
+        val url = "https://engine.hotellook.com/api/v2/lookup.json?query=$city&lang=ru&lookFor=hotel&limit=20&token=70c682c98759e5d9bec905fc7d219007"
+        val queue = Volley.newRequestQueue(getApplication())
+        val request =  object: StringRequest(
+            Request.Method.GET, url,
+            { response ->
+
+                Log.d("RESPONSE BABY", response.toString())
+                parseHotels(response)
+
+            },
+            {error ->
+                Log.d("Error response", error.toString())
+                Toast.makeText(getApplication(), "Response error", Toast.LENGTH_SHORT).show()
+            }){
+
+        }
+        queue.add(request)
+    }
+
+    private fun parseHotels(response: String){
+        val hotelList = ArrayList<Hotels>()
+        val json = JSONObject(response)
+        val hotels = json.getJSONObject("results").getJSONArray("hotels")
+        for (i in 0 until hotels.length()){
+            val hotel = hotels[i] as JSONObject
+            val hotelModel = Hotels(
+                hotel.getString("label"),
+                hotel.getString("locationName"),
+                hotel.getInt("_score"),
+
+            )
+            hotelList.add(hotelModel)
+        }
+
+        hotelLabels.value = hotelList
     }
 
 
