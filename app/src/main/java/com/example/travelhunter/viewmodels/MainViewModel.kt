@@ -11,15 +11,13 @@ import com.airbnb.lottie.LottieAnimationView
 import com.android.volley.Request
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
+import com.example.travelhunter.data.Constants
+import com.example.travelhunter.data.Data
 import com.example.travelhunter.data.DateFlight
 import com.example.travelhunter.data.FlightModel
 import com.example.travelhunter.data.Iata
 import com.example.travelhunter.interfaces.FlightApi
 import com.example.travelhunter.interfaces.IataApi
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.json.JSONObject
@@ -34,14 +32,20 @@ class MainViewModel (application: Application) : AndroidViewModel(application) {
     private var bottomNavVisibility = MutableLiveData<Boolean>()
     val getBottomNavVisibility : LiveData<Boolean> = bottomNavVisibility
 
-    private var flightWithDate = MutableLiveData<FlightModel>()
-    val getFlightWithDate: LiveData<FlightModel> = flightWithDate
+    private var flight = MutableLiveData<FlightModel>()
+    val getFlight: LiveData<FlightModel> = flight
 
     private var dateFlightList = MutableLiveData<List<DateFlight>>()
     val getDateFlightList: LiveData<List<DateFlight>> = dateFlightList
 
+    private var flightList = MutableLiveData<List<Data>>()
+    val getFlightList: LiveData<List<Data>> = flightList
+
     private var iata = MutableLiveData<Iata>()
     val getIata: LiveData<Iata> = iata
+
+    private var withDate = MutableLiveData<Boolean>()
+    val getWithDate : LiveData<Boolean> = withDate
 
 
     private var interceptor: HttpLoggingInterceptor = HttpLoggingInterceptor()
@@ -60,7 +64,7 @@ class MainViewModel (application: Application) : AndroidViewModel(application) {
             .build()
 
         retrofit = Retrofit.Builder()
-            .baseUrl("https://api.travelpayouts.com/v1/prices/")
+            .baseUrl("https://api.travelpayouts.com/v2/prices/")
             .client(client)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
@@ -71,6 +75,10 @@ class MainViewModel (application: Application) : AndroidViewModel(application) {
 
     fun setBottomNavVisibility(visibility: Boolean){
         bottomNavVisibility.value = visibility
+    }
+
+    fun setWithDate(with: Boolean){
+        withDate.value = with
     }
 
 
@@ -101,11 +109,13 @@ class MainViewModel (application: Application) : AndroidViewModel(application) {
                         dateFlightList.value = null
 
                         iata.value?.destinationIata?.let{
-                            getDateFlight(iata.value!!, "apiKey")
+                            getDateFlight(iata.value!!, Constants.API_KEY)
                         }
                     }
                     else{
-                        TODO()
+                        flightList.value = null
+
+                        iata.value?.destinationIata?.let{getFlightsWithoutDate(iata.value!!)}
                     }
 
                 }
@@ -121,13 +131,18 @@ class MainViewModel (application: Application) : AndroidViewModel(application) {
     @SuppressLint("SuspiciousIndentation")
     private fun getFlightsWithoutDate(test: Iata){
 
-        val flightList = ArrayList<FlightModel>()
+        val listOfFlights = ArrayList<Data>()
 
             flightApi.getFlight(test.originIata.iata, test.destinationIata.iata).enqueue(object : Callback<FlightModel>{
                 override fun onResponse(p0: Call<FlightModel>, p1: Response<FlightModel>) {
                     if (p1.isSuccessful){
-                        Log.d("RESPONSE BABY", p1.body().toString())
+                        Log.d("FLIGHT RESPONSE BABY", p1.body().toString())
 
+                        flight.value = p1.body()
+                        for (i in 0 until flight.value!!.data.size){
+                            listOfFlights.add(flight.value!!.data[i])
+                        }
+                        flightList.value = listOfFlights
                     }
                 }
 

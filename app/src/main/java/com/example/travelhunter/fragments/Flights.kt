@@ -58,12 +58,16 @@ class Flights : Fragment() {
 
                 val query = vm.setRoute(binding.flightsFromEdit.text.toString(), binding.flightsToEdit.text.toString())
                 vm.getIata(query, true)
+                vm.setWithDate(true)
 
                 Navigation.findNavController(view).navigate(R.id.action_flights_to_searchFlights)
             }
             else if (binding.flightsFromEdit.text.isNotEmpty() && binding.flightsToEdit.text.isNotEmpty() && (binding.flightsToDateText.text.isEmpty() || binding.flightsFromDateText.text.isEmpty())){
                 val query = vm.setRoute(binding.flightsFromEdit.text.toString(), binding.flightsToEdit.text.toString())
+
                 vm.getIata(query, false)
+                vm.setWithDate(false)
+
                 Navigation.findNavController(view).navigate(R.id.action_flights_to_searchFlights)
             }
             else {
@@ -80,7 +84,7 @@ class Flights : Fragment() {
 
                     val selectedDate = Calendar.getInstance()
                     selectedDate.set(year, month, day)
-                    val dateFormat = android.icu.text.SimpleDateFormat("EEEE, dd/MM/yyyy", Locale.getDefault())
+                    val dateFormat = android.icu.text.SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
                     val formattedDate = dateFormat.format(selectedDate.time)
                     textView.text = formattedDate
             },
