@@ -4,9 +4,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.core.view.isEmpty
+import androidx.core.view.isNotEmpty
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.airbnb.lottie.LottieDrawable
+import com.example.travelhunter.adapters.FlightsWithDateAdapter
 import com.example.travelhunter.databinding.FragmentSearchFlightsBinding
 import com.example.travelhunter.viewmodels.MainViewModel
 
@@ -15,6 +20,8 @@ class SearchFlights : Fragment() {
 
     private lateinit var binding: FragmentSearchFlightsBinding
     private val vm: MainViewModel by activityViewModels()
+
+    private lateinit var adapter: FlightsWithDateAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,9 +43,22 @@ class SearchFlights : Fragment() {
 
         vm.playAnimation(binding.flightsNoFlightsImage, 0.0f, 1.0f, 1.0f, LottieDrawable.INFINITE, LottieDrawable.INFINITE)
 
-        vm.getFlightWithoutDate.observe(viewLifecycleOwner){
-            binding.flightsNoFlightsText.text = it.data.destination.flight.price.toString()
+        setRecyclerView()
+
+        vm.getDateFlightList.observe(viewLifecycleOwner){
+            binding.emptyFlights.visibility = View.GONE
+            if (it == null) binding.emptyFlights.visibility = View.VISIBLE
+
+            adapter.submitList(it)
         }
+
+
+    }
+
+    private fun setRecyclerView() = with(binding) {
+        flightsRecyclerView.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
+        adapter = FlightsWithDateAdapter()
+        flightsRecyclerView.adapter = adapter
     }
 
 }

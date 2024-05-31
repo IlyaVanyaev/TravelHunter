@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="110dp"
+    android:layout_marginHorizontal="20dp"
+    android:layout_marginVertical="20dp"
+    app:cardBackgroundColor="@color/white_80"
+    app:cardCornerRadius="@dimen/card_corner_radius"
+    app:cardElevation="@dimen/default_card_elevation">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <TextView
+            android:id="@+id/flight_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="25dp"
+            android:text="10000"
+            android:textColor="@color/light_blue"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/flight_route"
+            app:layout_constraintEnd_toStartOf="@+id/flight_depart"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/flight_route_iata"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="50dp"
+            android:layout_marginEnd="50dp"
+            android:layout_marginBottom="10dp"
+            android:text="MOW-AER"
+            android:textColor="@color/light_blue"
+            android:textSize="10sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/flight_route" />
+
+
+        <TextView
+            android:id="@+id/flight_route"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="5dp"
+            android:text="Москва-Сочи"
+            android:textColor="@color/light_blue"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/flight_route_iata"
+            app:layout_constraintEnd_toStartOf="@+id/flight_return"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/flight_price" />
+
+        <TextView
+            android:id="@+id/flight_depart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="10dp"
+            android:text="Отправка:"
+            android:textColor="@color/light_blue"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toTopOf="@+id/flight_return"
+            app:layout_constraintEnd_toStartOf="@+id/flight_departure_date"
+            app:layout_constraintStart_toEndOf="@+id/flight_price"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/flight_departure_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="2dp"
+            android:text="17:45\n2024-06-03"
+            android:textAlignment="center"
+            android:textColor="@color/light_blue"
+            android:textSize="15sp"
+            app:layout_constraintBottom_toTopOf="@+id/flight_return_date"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/flight_depart"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <TextView
+            android:id="@+id/flight_return"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="5dp"
+            android:text="Возврат:"
+            android:textColor="@color/light_blue"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toTopOf="@+id/flight_route_iata"
+            app:layout_constraintEnd_toStartOf="@+id/flight_return_date"
+            app:layout_constraintStart_toEndOf="@+id/flight_route"
+            app:layout_constraintTop_toBottomOf="@+id/flight_depart" />
+
+        <TextView
+            android:id="@+id/flight_return_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
+            android:text="17:45\n2024-06-03"
+            android:textAlignment="center"
+            android:textColor="@color/light_blue"
+            android:textSize="15sp"
+            app:layout_constraintBottom_toTopOf="@+id/flight_route_iata"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/flight_return"
+            app:layout_constraintTop_toBottomOf="@+id/flight_departure_date" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

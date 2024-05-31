@@ -54,10 +54,10 @@ class Flights : Fragment() {
 
         binding.flightsButton.setOnClickListener {
 
-            if(binding.flightsFromEdit.text.isNotEmpty() && binding.flightsToEdit.text.isNotEmpty() && (binding.flightsToDateText.text.isEmpty() || binding.flightsFromDateText.text.isEmpty())){
+            if(binding.flightsFromEdit.text.isNotEmpty() && binding.flightsToEdit.text.isNotEmpty() && (binding.flightsToDateText.text.isNotEmpty() || binding.flightsFromDateText.text.isNotEmpty())){
 
                 val query = vm.setRoute(binding.flightsFromEdit.text.toString(), binding.flightsToEdit.text.toString())
-                vm.getIata(query, false)
+                vm.getIata(query, true)
 
                 Navigation.findNavController(view).navigate(R.id.action_flights_to_searchFlights)
             }

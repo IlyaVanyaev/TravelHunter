@@ -1,5 +1,6 @@
 package com.example.travelhunter.viewmodels
 
+import android.annotation.SuppressLint
 import android.app.Application
 import android.util.Log
 import androidx.lifecycle.AndroidViewModel
@@ -28,8 +29,11 @@ class MainViewModel (application: Application) : AndroidViewModel(application) {
     private var bottomNavVisibility = MutableLiveData<Boolean>()
     val getBottomNavVisibility : LiveData<Boolean> = bottomNavVisibility
 
-    private var flightWithoutDate = MutableLiveData<FlightModel>()
-    val getFlightWithoutDate: LiveData<FlightModel> = flightWithoutDate
+    private var flightWithDate = MutableLiveData<FlightModel>()
+    val getFlightWithDate: LiveData<FlightModel> = flightWithDate
+
+    private var dateFlightList = MutableLiveData<List<FlightModel>>()
+    val getDateFlightList: LiveData<List<FlightModel>> = dateFlightList
 
     private var iata = MutableLiveData<Iata>()
     val getIata: LiveData<Iata> = iata
@@ -88,12 +92,15 @@ class MainViewModel (application: Application) : AndroidViewModel(application) {
                     iata.value = p1.body()
 
                     if (withDate){
-                        TODO()
+
+                        dateFlightList.value = null
+
+                        iata.value?.destinationIata?.let{
+                            getFlightsWithDate(iata.value!!)
+                        }
                     }
                     else{
-                        iata.value?.destinationIata?.let{
-                            getFlightsWithoutDate(iata.value!!)
-                        }
+                        TODO()
                     }
 
                 }
@@ -106,13 +113,20 @@ class MainViewModel (application: Application) : AndroidViewModel(application) {
         })
     }
 
-    private fun getFlightsWithoutDate(test: Iata){
+    @SuppressLint("SuspiciousIndentation")
+    private fun getFlightsWithDate(test: Iata){
+
+        val flightList = ArrayList<FlightModel>()
 
             flightApi.getFlight(test.originIata.iata, test.destinationIata.iata).enqueue(object : Callback<FlightModel>{
                 override fun onResponse(p0: Call<FlightModel>, p1: Response<FlightModel>) {
                     if (p1.isSuccessful){
                         Log.d("RESPONSE BABY", p1.body().toString())
-                        flightWithoutDate.value = p1.body()
+
+                        flightWithDate.value = p1.body()
+
+                        flightWithDate.value?.data?.destination?.let { flightList.add(flightWithDate.value!!) }
+                        dateFlightList.value = flightList
                     }
                 }
 
