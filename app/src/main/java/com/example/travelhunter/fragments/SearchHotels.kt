@@ -5,17 +5,20 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.airbnb.lottie.LottieDrawable
 import com.example.travelhunter.adapters.FlightListAdapter
 import com.example.travelhunter.adapters.FlightsWithDateAdapter
 import com.example.travelhunter.adapters.HotelsAdapter
+import com.example.travelhunter.data.Hotels
 import com.example.travelhunter.databinding.FragmentSearchHotelsBinding
+import com.example.travelhunter.interfaces.HotelListener
 import com.example.travelhunter.viewmodels.MainViewModel
 
 
-class SearchHotels : Fragment() {
+class SearchHotels : Fragment(), HotelListener {
 
     private lateinit var binding: FragmentSearchHotelsBinding
     private val vm: MainViewModel by activityViewModels()
@@ -52,10 +55,14 @@ class SearchHotels : Fragment() {
         vm.playAnimation(binding.hotelsNoHotelsImage, 0.0f, 1.0f, 1.0f, LottieDrawable.INFINITE, LottieDrawable.INFINITE)
     }
 
-    private fun setRecyclerView() = with(binding) {
-        hotelsRecyclerView.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
-        adapter = HotelsAdapter()
-        hotelsRecyclerView.adapter = adapter
+    private fun setRecyclerView()  {
+        binding.hotelsRecyclerView.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
+        adapter = HotelsAdapter(this)
+        binding.hotelsRecyclerView.adapter = adapter
+    }
+
+    override fun onHotelClick(hotels: Hotels) {
+        Toast.makeText(activity, "сохранил ${hotels.label}", Toast.LENGTH_SHORT).show()
     }
 
 }

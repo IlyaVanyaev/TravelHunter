@@ -13,11 +13,15 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.airbnb.lottie.LottieDrawable
 import com.example.travelhunter.adapters.FlightListAdapter
 import com.example.travelhunter.adapters.FlightsWithDateAdapter
+import com.example.travelhunter.data.Data
+import com.example.travelhunter.data.DateFlight
 import com.example.travelhunter.databinding.FragmentSearchFlightsBinding
+import com.example.travelhunter.interfaces.DateFlightListener
+import com.example.travelhunter.interfaces.FlightListener
 import com.example.travelhunter.viewmodels.MainViewModel
 
 
-class SearchFlights : Fragment() {
+class SearchFlights : Fragment(), FlightListener, DateFlightListener {
 
     private lateinit var binding: FragmentSearchFlightsBinding
     private val vm: MainViewModel by activityViewModels()
@@ -64,15 +68,23 @@ class SearchFlights : Fragment() {
 
     }
 
-    private fun setRecyclerView() = with(binding) {
-        flightsRecyclerView.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
-        adapter = FlightListAdapter()
-        dateAdapter = FlightsWithDateAdapter()
+    private fun setRecyclerView() {
+        binding.flightsRecyclerView.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
+        adapter = FlightListAdapter(this)
+        dateAdapter = FlightsWithDateAdapter(this)
 
         vm.getWithDate.observe(viewLifecycleOwner){
-            if (it) flightsRecyclerView.adapter = dateAdapter
-            else flightsRecyclerView.adapter = adapter
+            if (it) binding.flightsRecyclerView.adapter = dateAdapter
+            else binding.flightsRecyclerView.adapter = adapter
         }
+    }
+
+    override fun onFlightClick(data: Data) {
+        Toast.makeText(activity, "сохранил ${data.value}", Toast.LENGTH_SHORT).show()
+    }
+
+    override fun onDateFlightClick(dateFlight: DateFlight) {
+        Toast.makeText(activity, "сохранил ${dateFlight.price}", Toast.LENGTH_SHORT).show()
     }
 
 }

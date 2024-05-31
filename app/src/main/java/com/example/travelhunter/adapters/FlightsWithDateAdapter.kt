@@ -9,21 +9,25 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.travelhunter.R
 import com.example.travelhunter.data.DateFlight
-import com.example.travelhunter.data.FlightModel
 import com.example.travelhunter.databinding.FlightItemBinding
+import com.example.travelhunter.interfaces.DateFlightListener
 
-class FlightsWithDateAdapter: ListAdapter<DateFlight, FlightsWithDateAdapter.ViewHolder>(Comparator()) {
+class FlightsWithDateAdapter(private val listener: DateFlightListener): ListAdapter<DateFlight, FlightsWithDateAdapter.ViewHolder>(Comparator()) {
 
     class ViewHolder(view: View): RecyclerView.ViewHolder(view){
 
         private val binding = FlightItemBinding.bind(view)
 
         @SuppressLint("SetTextI18n")
-        fun bind(dateFlight: DateFlight) = with(binding){
+        fun bind(dateFlight: DateFlight, listener: DateFlightListener) = with(binding){
 
             flightPrice.text = dateFlight.price.toString() + "\u20BD"
             flightDepartureDate.text = dateFlight.departureAt.drop(11).dropLast(9) + "\n" + dateFlight.departureAt.dropLast(15)
             flightReturnDate.text = dateFlight.returnAt.drop(11).dropLast(9) + "\n" + dateFlight.returnAt.dropLast(15)
+
+            itemView.setOnClickListener {
+                listener.onDateFlightClick(dateFlight)
+            }
 
         }
 
@@ -45,7 +49,7 @@ class FlightsWithDateAdapter: ListAdapter<DateFlight, FlightsWithDateAdapter.Vie
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(getItem(position))
+        holder.bind(getItem(position), listener)
     }
 
 }

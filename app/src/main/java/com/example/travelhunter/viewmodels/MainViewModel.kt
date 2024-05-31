@@ -200,7 +200,7 @@ class MainViewModel (application: Application) : AndroidViewModel(application) {
 
     fun getHotels(city: String){
         hotelLabels.value = null
-        val url = "https://engine.hotellook.com/api/v2/lookup.json?query=$city&lang=ru&lookFor=hotel&limit=20&token=70c682c98759e5d9bec905fc7d219007"
+        val url = "https://engine.hotellook.com/api/v2/lookup.json?query=$city&lang=ru&lookFor=hotel&limit=20&token=${Constants.API_KEY}"
         val queue = Volley.newRequestQueue(getApplication())
         val request =  object: StringRequest(
             Request.Method.GET, url,

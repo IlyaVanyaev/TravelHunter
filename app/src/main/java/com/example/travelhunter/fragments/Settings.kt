@@ -40,7 +40,7 @@ class Settings : Fragment() {
 
         binding.settingsProfileEditButton.setOnClickListener { Navigation.findNavController(view).navigate(R.id.action_settings_to_mainSettings) }
 
-        binding.settingsLogOutButton.setOnClickListener { Navigation.findNavController(view).navigate(R.id.action_settings_to_signIn) }
+        //binding.settingsLogOutButton.setOnClickListener { Navigation.findNavController(view).navigate(R.id.action_settings_to_signIn) }
     }
 
 
