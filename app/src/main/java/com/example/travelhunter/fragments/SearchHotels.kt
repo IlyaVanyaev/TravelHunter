@@ -7,14 +7,17 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.airbnb.lottie.LottieDrawable
 import com.example.travelhunter.adapters.FlightListAdapter
 import com.example.travelhunter.adapters.FlightsWithDateAdapter
 import com.example.travelhunter.adapters.HotelsAdapter
 import com.example.travelhunter.data.Hotels
+import com.example.travelhunter.database.HotelEntity
 import com.example.travelhunter.databinding.FragmentSearchHotelsBinding
 import com.example.travelhunter.interfaces.HotelListener
+import com.example.travelhunter.viewmodels.DataBaseViewModel
 import com.example.travelhunter.viewmodels.MainViewModel
 
 
@@ -25,8 +28,12 @@ class SearchHotels : Fragment(), HotelListener {
 
     private lateinit var adapter: HotelsAdapter
 
+    private lateinit var dbvm: DataBaseViewModel
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        dbvm = ViewModelProvider(this)[DataBaseViewModel::class.java]
 
         vm.setBottomNavVisibility(false)
     }
@@ -63,6 +70,9 @@ class SearchHotels : Fragment(), HotelListener {
 
     override fun onHotelClick(hotels: Hotels) {
         Toast.makeText(activity, "сохранил ${hotels.label}", Toast.LENGTH_SHORT).show()
+        dbvm.insertHotel(HotelEntity(null, hotels.label, hotels.locationName, hotels._socre, hotels._socre.div(60)))
     }
+
+
 
 }

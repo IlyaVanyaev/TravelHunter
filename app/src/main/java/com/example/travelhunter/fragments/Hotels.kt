@@ -38,9 +38,12 @@ class Hotels : Fragment() {
 
         binding.hotelsButton.setOnClickListener {
 
-            vm.getHotels(binding.hotelsCityEdit.text.toString())
+            if (binding.hotelsCityEdit.text.isNotEmpty()){
 
-            Navigation.findNavController(view).navigate(R.id.action_hotels_to_searchHotels)
+                vm.getHotels(binding.hotelsCityEdit.text.toString())
+
+                Navigation.findNavController(view).navigate(R.id.action_hotels_to_searchHotels)
+            }
 
         }
     }
