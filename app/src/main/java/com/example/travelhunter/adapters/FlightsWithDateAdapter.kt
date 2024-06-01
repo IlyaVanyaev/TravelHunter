@@ -24,7 +24,7 @@ class FlightsWithDateAdapter(private val listener: DateFlightListener): ListAdap
             flightPrice.text = dateFlight.price.toString() + "\u20BD"
             flightDepartureDate.text = dateFlight.departureAt.drop(11).dropLast(9) + "\n" + dateFlight.departureAt.dropLast(15)
             flightReturnDate.text = dateFlight.returnAt.drop(11).dropLast(9) + "\n" + dateFlight.returnAt.dropLast(15)
-
+            flightRoute.text = "${dateFlight.originIata}-${dateFlight.destIata}"
             itemView.setOnClickListener {
                 listener.onDateFlightClick(dateFlight)
             }

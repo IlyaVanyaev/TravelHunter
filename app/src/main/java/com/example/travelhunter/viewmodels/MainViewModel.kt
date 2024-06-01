@@ -2,7 +2,9 @@ package com.example.travelhunter.viewmodels
 
 import android.annotation.SuppressLint
 import android.app.Application
+import android.net.Uri
 import android.util.Log
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
@@ -19,6 +21,7 @@ import com.example.travelhunter.data.Hotels
 import com.example.travelhunter.data.Iata
 import com.example.travelhunter.interfaces.FlightApi
 import com.example.travelhunter.interfaces.IataApi
+import com.squareup.picasso.Picasso
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.json.JSONObject
@@ -50,6 +53,12 @@ class MainViewModel (application: Application) : AndroidViewModel(application) {
 
     private var hotelLabels = MutableLiveData<List<Hotels>>()
     val getHotelLabels: LiveData<List<Hotels>> = hotelLabels
+
+    private var backgroundUri = MutableLiveData<String>()
+    val getBackgroundUri: LiveData<String> = backgroundUri
+
+    private var background = MutableLiveData<Int>()
+    val getBackground: LiveData<Int> = background
 
 
     private var interceptor: HttpLoggingInterceptor = HttpLoggingInterceptor()
@@ -167,7 +176,7 @@ class MainViewModel (application: Application) : AndroidViewModel(application) {
             { response ->
 
                 Log.d("RESPONSE BABY", response.toString())
-                parseDateFlight(response)
+                parseDateFlight(response, test)
 
             },
             {error ->
@@ -185,13 +194,15 @@ class MainViewModel (application: Application) : AndroidViewModel(application) {
         queue.add(request)
     }
 
-    private fun parseDateFlight(response: String){
+    private fun parseDateFlight(response: String, test: Iata){
         val flightList = ArrayList<DateFlight>()
         val json = JSONObject(response)
         val dateFlight = DateFlight(
             json.getJSONObject("data").getJSONObject(iata.value?.destinationIata!!.iata).getJSONObject("0").getString("departure_at"),
             json.getJSONObject("data").getJSONObject(iata.value?.destinationIata!!.iata).getJSONObject("0").getString("return_at"),
-            json.getJSONObject("data").getJSONObject(iata.value?.destinationIata!!.iata).getJSONObject("0").getInt("price")
+            json.getJSONObject("data").getJSONObject(iata.value?.destinationIata!!.iata).getJSONObject("0").getInt("price"),
+            test.originIata.iata,
+            test.destinationIata.iata
         )
         flightList.add(dateFlight)
         dateFlightList.value = flightList
@@ -237,5 +248,18 @@ class MainViewModel (application: Application) : AndroidViewModel(application) {
         hotelLabels.value = hotelList
     }
 
+
+    fun downloadImage(url: String, target: ImageView){
+        Picasso.get().load(url).into(target)
+    }
+
+
+    fun setBackground(uri: String){
+        backgroundUri.value = uri
+    }
+
+    fun setDefaultBackGround(uri: Int){
+        background.value = uri
+    }
 
 }

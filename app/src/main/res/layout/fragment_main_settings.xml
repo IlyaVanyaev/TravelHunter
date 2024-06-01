@@ -4,281 +4,68 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/sea_wave_wallpaper"
     tools:context=".fragments.MainSettings">
 
 
-    <ScrollView
+    <androidx.cardview.widget.CardView
+        android:id="@+id/load_image_card"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="100dp"
+        app:cardBackgroundColor="@color/white_50"
+        app:cardCornerRadius="@dimen/card_corner_radius"
+        app:cardElevation="@dimen/default_card_elevation"
+        app:layout_constraintBottom_toTopOf="@+id/download"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+
+        <EditText
+            android:id="@+id/search_image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="10dp"
+            android:hint="Введите ссылку на изображение"
+            android:textColor="@color/light_blue"
+            android:textSize="20sp"
+            android:textStyle="italic|bold" />
+
+    </androidx.cardview.widget.CardView>
+
+    <ImageButton
+        android:id="@+id/clear"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="50dp"
+        android:background="@android:color/transparent"
+        android:src="@drawable/clear"
+        app:layout_constraintBottom_toTopOf="@+id/download"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/load_image_card" />
+
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/download"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginBottom="50dp"
+        app:layout_constraintBottom_toTopOf="@+id/lower_limit"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:lottie_rawRes="@raw/download_animation"/>
+
+
+    <View
+        android:id="@+id/lower_limit"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:overScrollMode="always"
-        android:scrollbars="vertical"
+        android:layout_height="10dp"
+        android:layout_marginBottom="40dp"
+        android:background="@android:color/transparent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0">
-
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cardView"
-                android:layout_width="200dp"
-                android:layout_height="200dp"
-                android:layout_marginTop="50dp"
-                app:cardBackgroundColor="@android:color/transparent"
-                app:cardCornerRadius="150dp"
-                app:cardElevation="@dimen/default_card_elevation"
-                app:layout_constraintBottom_toTopOf="@+id/main_settings_type_name"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-
-                <ImageView
-                    android:id="@+id/main_settings_account_image"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:src="@drawable/account" />
-
-
-            </androidx.cardview.widget.CardView>
-
-            <EditText
-                android:id="@+id/main_settings_type_name"
-                android:layout_width="300dp"
-                android:layout_height="@dimen/settings_card_height"
-                android:layout_marginTop="50dp"
-                android:background="@drawable/edit_shape"
-                android:hint="@string/type_name"
-                android:inputType="text"
-                android:textAlignment="center"
-                android:textColor="@color/dark_blue"
-                android:textSize="20sp"
-                app:layout_constraintBottom_toTopOf="@+id/main_settings_type_surname"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/cardView" />
-
-
-            <EditText
-                android:id="@+id/main_settings_type_surname"
-                android:layout_width="300dp"
-                android:layout_height="@dimen/settings_card_height"
-                android:layout_marginTop="50dp"
-                android:background="@drawable/edit_shape"
-                android:hint="@string/type_surname"
-                android:inputType="text"
-                android:textAlignment="center"
-                android:textColor="@color/dark_blue"
-                android:textSize="20sp"
-                app:layout_constraintBottom_toTopOf="@+id/main_settings_type_email"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/main_settings_type_name" />
-
-
-            <EditText
-                android:id="@+id/main_settings_type_email"
-                android:layout_width="300dp"
-                android:layout_height="@dimen/settings_card_height"
-                android:layout_marginTop="50dp"
-                android:background="@drawable/edit_shape"
-                android:hint="@string/type_email"
-                android:inputType="textEmailAddress"
-                android:textAlignment="center"
-                android:textColor="@color/dark_blue"
-                android:textSize="20sp"
-                app:layout_constraintBottom_toTopOf="@+id/main_settings_password_edit_data"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/main_settings_type_surname" />
-
-
-            <Button
-                android:id="@+id/main_settings_password_edit_data"
-                android:layout_width="250dp"
-                android:layout_height="60dp"
-                android:layout_marginTop="40dp"
-                android:backgroundTint="@color/white_50"
-                android:text="@string/change_data"
-                android:textColor="@color/dark_blue"
-                android:textSize="20sp"
-                android:textStyle="italic"
-                app:layout_constraintBottom_toTopOf="@+id/separate_line_1"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/main_settings_type_email" />
-
-
-            <View
-                android:id="@+id/separate_line_1"
-                android:layout_width="match_parent"
-                android:layout_height="10dp"
-                android:layout_marginStart="@dimen/separate_line_side_margin"
-                android:layout_marginTop="30dp"
-                android:layout_marginEnd="@dimen/separate_line_side_margin"
-                android:background="@drawable/edit_shape"
-                android:backgroundTint="@color/dark_blue"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/main_settings_password_edit_data" />
-
-            <EditText
-                android:id="@+id/main_settings_type_password"
-                android:layout_width="300dp"
-                android:layout_height="@dimen/settings_card_height"
-                android:layout_marginTop="50dp"
-                android:background="@drawable/edit_shape"
-                android:backgroundTint="@color/white_50"
-                android:hint="@string/type_password"
-                android:inputType="textPassword"
-                android:textAlignment="center"
-                android:textColor="@color/dark_blue"
-                android:textSize="20sp"
-                app:layout_constraintBottom_toTopOf="@+id/main_settings_repeat_password"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/separate_line_1" />
-
-
-            <EditText
-                android:id="@+id/main_settings_repeat_password"
-                android:layout_width="300dp"
-                android:layout_height="@dimen/settings_card_height"
-                android:layout_marginTop="30dp"
-                android:background="@drawable/edit_shape"
-                android:backgroundTint="@color/white_50"
-                android:hint="@string/repeat_password"
-                android:inputType="textPassword"
-                android:textAlignment="center"
-                android:textColor="@color/dark_blue"
-                android:textSize="20sp"
-                app:layout_constraintBottom_toTopOf="@+id/main_settings_password_edit_button"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/main_settings_type_password" />
-
-
-            <Button
-                android:id="@+id/main_settings_password_edit_button"
-                android:layout_width="250dp"
-                android:layout_height="60dp"
-                android:layout_marginTop="40dp"
-                android:backgroundTint="@color/white_50"
-                android:text="@string/change_password"
-                android:textColor="@color/dark_blue"
-                android:textSize="20sp"
-                android:textStyle="italic"
-                app:layout_constraintBottom_toTopOf="@+id/separate_line_2"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/main_settings_repeat_password" />
-
-
-            <View
-                android:id="@+id/separate_line_2"
-                android:layout_width="match_parent"
-                android:layout_height="10dp"
-                android:layout_marginStart="@dimen/separate_line_side_margin"
-                android:layout_marginTop="@dimen/separate_line_top_margin"
-                android:layout_marginEnd="@dimen/separate_line_side_margin"
-                android:background="@drawable/edit_shape"
-                android:backgroundTint="@color/dark_blue"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/main_settings_password_edit_button" />
-
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/background_CardView"
-                android:layout_width="350dp"
-                android:layout_height="100dp"
-                android:layout_marginTop="50dp"
-                app:cardBackgroundColor="@color/dark_blue"
-                app:cardCornerRadius="15dp"
-                app:cardMaxElevation="@dimen/default_card_elevation"
-                app:layout_constraintBottom_toTopOf="@+id/main_settings_change_background_button"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/separate_line_2">
-
-
-                <ImageView
-                    android:id="@+id/main_settings_recent_background"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_margin="10dp"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/sea_wave_wallpaper" />
-
-            </androidx.cardview.widget.CardView>
-
-
-            <Button
-                android:id="@+id/main_settings_change_background_button"
-                android:layout_width="250dp"
-                android:layout_height="60dp"
-                android:layout_marginTop="50dp"
-                android:backgroundTint="@color/white_50"
-                android:text="@string/change_background"
-                android:textColor="@color/dark_blue"
-                android:textSize="20sp"
-                android:textStyle="italic"
-                app:layout_constraintBottom_toTopOf="@+id/separate_line_3"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/background_CardView" />
-
-
-            <View
-                android:id="@+id/separate_line_3"
-                android:layout_width="match_parent"
-                android:layout_height="10dp"
-                android:layout_marginStart="@dimen/separate_line_side_margin"
-                android:layout_marginTop="@dimen/separate_line_top_margin"
-                android:layout_marginEnd="@dimen/separate_line_side_margin"
-                android:background="@drawable/edit_shape"
-                android:backgroundTint="@color/dark_blue"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/main_settings_change_background_button" />
-
-            <Button
-                android:id="@+id/main_settings_delete_account_button"
-                android:layout_width="250dp"
-                android:layout_height="60dp"
-                android:layout_marginTop="50dp"
-                android:backgroundTint="@color/white_50"
-                android:text="@string/delete_account"
-                android:textColor="@color/log_out_btn"
-                android:textSize="20sp"
-                app:layout_constraintBottom_toTopOf="@+id/lower_limit"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/separate_line_3" />
-
-
-            <View
-                android:id="@+id/lower_limit"
-                android:layout_width="match_parent"
-                android:layout_height="10dp"
-                android:layout_marginTop="@dimen/lower_limit_top_margin"
-                android:background="@android:color/transparent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/main_settings_delete_account_button" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-    </ScrollView>
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

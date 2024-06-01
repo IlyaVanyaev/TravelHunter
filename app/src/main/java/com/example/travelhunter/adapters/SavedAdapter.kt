@@ -24,7 +24,8 @@ class SavedAdapter: ListAdapter<SavedItem, SavedAdapter.ViewHolder>(Comparator()
             if (savedItem.label == null){
                 hotelLabel.text = "${savedItem.origin}-${savedItem.destination}"
                 hotelLocation.text = "${savedItem.departDate}-${savedItem.returnDate}"
-                hotelScoreTotal.text = savedItem.price.toString()
+                hotelScoreTotal.text = savedItem.price.toString() + "\u20BD"
+                hotelScoreNight.text = ""
             }
             else{
                 hotelLabel.text = savedItem.label

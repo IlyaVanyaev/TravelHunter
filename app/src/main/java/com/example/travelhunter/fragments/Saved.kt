@@ -27,8 +27,7 @@ class Saved : Fragment() {
 
     private lateinit var dbvm: DataBaseViewModel
 
-    private val hotel = ArrayList<SavedItem>()
-    private val flight = ArrayList<SavedItem>()
+    private val savedList = ArrayList<SavedItem>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,28 +51,35 @@ class Saved : Fragment() {
         if (vm.getBottomNavVisibility.value == false) vm.setBottomNavVisibility(true)
 
         setRecyclerView()
+        savedList.clear()
 
         dbvm.getAllHotels.observe(viewLifecycleOwner){
-            hotel.clear()
+
+            binding.emptySaves.visibility = View.GONE
+            if (it.isEmpty()) binding.emptySaves.visibility = View.VISIBLE
+
             it?.let{
                 it.forEach {it1->
-                    hotel.add(SavedItem(it1.label, it1.locationName, it1.scoreTotal, it1.scoreNight, null, null, null, null, null))
+                    savedList.add(SavedItem(it1.label, it1.locationName, it1.scoreTotal, it1.scoreNight, null, null, null, null, null))
                 }
 
-                adapter.submitList(hotel)
+                adapter.submitList(savedList)
             }
 
         }
 
-//        dbvm.getAllFlights.observe(viewLifecycleOwner){
-//            flight.clear()
-//            it?.let{
-//                it.forEach {it1->
-//                    flight.add(SavedItem(null, null, null, null, it1.depart, it1.route.dropLast(3), it1.route.drop(4), it1.ret, it1.price))
-//                }
-//                adapter.submitList(flight)
-//            }
-//        }
+        dbvm.getAllFlights.observe(viewLifecycleOwner){
+
+            binding.emptySaves.visibility = View.GONE
+            if (it.isEmpty()) binding.emptySaves.visibility = View.VISIBLE
+
+            it?.let{
+                it.forEach {it1->
+                    savedList.add(SavedItem(null, null, null, null, it1.depart, it1.route.dropLast(3), it1.route.drop(4), it1.ret, it1.price))
+                }
+                adapter.submitList(savedList)
+            }
+        }
 
         vm.playAnimation(binding.savedNoSavesImage, 0.0f, 1.0f, 1.0f, LottieDrawable.INFINITE, LottieDrawable.INFINITE)
     }

@@ -42,6 +42,14 @@ class MainActivity : AppCompatActivity() {
             else binding.mainBottomNavigation.visibility = View.GONE
         }
 
+        viewModel.getBackgroundUri.observe(this){
+            viewModel.downloadImage(it, binding.mainBackground)
+        }
+
+        viewModel.getBackground.observe(this){
+            binding.mainBackground.setImageResource(it)
+        }
+
     }
 
 }
