@@ -9,15 +9,18 @@ import androidx.core.view.isEmpty
 import androidx.core.view.isNotEmpty
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.airbnb.lottie.LottieDrawable
 import com.example.travelhunter.adapters.FlightListAdapter
 import com.example.travelhunter.adapters.FlightsWithDateAdapter
 import com.example.travelhunter.data.Data
 import com.example.travelhunter.data.DateFlight
+import com.example.travelhunter.database.FlightEntity
 import com.example.travelhunter.databinding.FragmentSearchFlightsBinding
 import com.example.travelhunter.interfaces.DateFlightListener
 import com.example.travelhunter.interfaces.FlightListener
+import com.example.travelhunter.viewmodels.DataBaseViewModel
 import com.example.travelhunter.viewmodels.MainViewModel
 
 
@@ -26,6 +29,8 @@ class SearchFlights : Fragment(), FlightListener, DateFlightListener {
     private lateinit var binding: FragmentSearchFlightsBinding
     private val vm: MainViewModel by activityViewModels()
 
+    private lateinit var dbvm: DataBaseViewModel
+
     private lateinit var adapter: FlightListAdapter
     private lateinit var dateAdapter: FlightsWithDateAdapter
 
@@ -33,6 +38,8 @@ class SearchFlights : Fragment(), FlightListener, DateFlightListener {
         super.onCreate(savedInstanceState)
 
         vm.setBottomNavVisibility(false)
+
+        dbvm = ViewModelProvider(this)[DataBaseViewModel::class.java]
     }
 
     override fun onCreateView(
@@ -81,6 +88,7 @@ class SearchFlights : Fragment(), FlightListener, DateFlightListener {
 
     override fun onFlightClick(data: Data) {
         Toast.makeText(activity, "сохранил ${data.value}", Toast.LENGTH_SHORT).show()
+        dbvm.insertFlight(FlightEntity(null, data.value, data.depart_date, data.return_date, "${data.origin}-${data.destination}"))
     }
 
     override fun onDateFlightClick(dateFlight: DateFlight) {

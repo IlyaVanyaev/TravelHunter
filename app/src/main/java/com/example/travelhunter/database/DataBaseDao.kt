@@ -18,4 +18,13 @@ interface DataBaseDao {
     @Query("DELETE FROM Hotels")
     suspend fun deleteAllHotels()
 
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertFlight(flightEntity: FlightEntity)
+
+    @Query("SELECT * FROM Flights")
+    fun getAllFlights(): LiveData<List<FlightEntity>>
+
+    @Query("DELETE FROM Flights")
+    suspend fun deleteAllFlights()
+
 }
