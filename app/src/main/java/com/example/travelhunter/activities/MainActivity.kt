@@ -5,6 +5,7 @@ import android.view.View
 import android.view.WindowManager
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.NavHostFragment
@@ -35,6 +36,16 @@ class MainActivity : AppCompatActivity() {
 
         nav = supportFragmentManager.findFragmentById(R.id.mainFragmentContainerView) as NavHostFragment
         binding.mainBottomNavigation.setupWithNavController(nav.navController)
+
+
+        if (viewModel.getTheme()) {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+            viewModel.setDefaultBackGround(R.drawable.black_amoled)
+        }
+        else {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+            viewModel.setDefaultBackGround(R.drawable.gradient_blue)
+        }
 
 
         viewModel.getBottomNavVisibility.observe(this){

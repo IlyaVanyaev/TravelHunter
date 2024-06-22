@@ -3,6 +3,11 @@
     <style name="Base.Theme.TravelHunter" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+
+        <item name="cardBackgroundColor">@color/dark_blue</item>
+        <item name="android:textColor">@color/white_80</item>
+
+
     </style>
 
     <style name="Theme.TravelHunter" parent="Base.Theme.TravelHunter" />

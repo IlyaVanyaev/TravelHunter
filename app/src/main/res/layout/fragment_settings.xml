@@ -14,7 +14,7 @@
         android:layout_marginStart="15dp"
         android:layout_marginEnd="15dp"
         android:layout_marginBottom="50dp"
-        android:backgroundTint="@color/dark_blue"
+        style="@style/Base.Theme.TravelHunter"
         app:cardCornerRadius="@dimen/card_corner_radius"
         app:cardElevation="@dimen/default_card_elevation"
         app:layout_constraintBottom_toTopOf="@+id/main_separate_line"
@@ -43,7 +43,7 @@
                     android:layout_marginTop="30dp"
                     android:layout_marginEnd="50dp"
                     android:text="Темная тема:"
-                    android:textColor="@color/white_80"
+
                     android:textSize="@dimen/settings_text_size"
                     android:textStyle="italic"
                     app:layout_constraintBottom_toTopOf="@+id/load_picture_text"
@@ -57,10 +57,14 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="30dp"
                     android:layout_marginEnd="10dp"
+
+                    android:textColorLink="@color/dark_blue"
                     app:layout_constraintBottom_toTopOf="@+id/load_image"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/dark_mode"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:thumbTint="@color/white_80"
+                    app:trackTint="@color/light_blue" />
 
 
                 <TextView
@@ -71,7 +75,7 @@
                     android:layout_marginTop="30dp"
                     android:layout_marginEnd="50dp"
                     android:text="Загрузить фон:"
-                    android:textColor="@color/white_80"
+
                     android:textSize="@dimen/settings_text_size"
                     android:textStyle="italic"
                     app:layout_constraintBottom_toTopOf="@+id/drop_back"
@@ -100,7 +104,7 @@
                     android:layout_marginTop="30dp"
                     android:layout_marginEnd="50dp"
                     android:text="Сбросить фон:"
-                    android:textColor="@color/white_80"
+
                     android:textSize="@dimen/settings_text_size"
                     android:textStyle="italic"
                     app:layout_constraintEnd_toStartOf="@+id/image"
@@ -129,7 +133,7 @@
                     android:layout_marginTop="30dp"
                     android:layout_marginEnd="20dp"
                     android:text="Очистить избранное:"
-                    android:textColor="@color/white_80"
+
                     android:textSize="@dimen/settings_text_size"
                     android:textStyle="italic"
                     app:layout_constraintBottom_toTopOf="@+id/quit_text"
@@ -159,7 +163,7 @@
                     android:layout_marginTop="30dp"
                     android:layout_marginEnd="10dp"
                     android:text="Выйти из приложения:"
-                    android:textColor="@color/white_80"
+
                     android:textSize="@dimen/settings_text_size"
                     android:textStyle="italic"
                     app:layout_constraintEnd_toStartOf="@+id/settings_log_out_button"

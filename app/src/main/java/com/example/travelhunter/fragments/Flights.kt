@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.text.set
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.Navigation
@@ -72,6 +73,18 @@ class Flights : Fragment() {
             }
             else {
                 Toast.makeText(activity, "block", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        vm.departure.value = binding.flightsToEdit.text
+        vm.returning.value = binding.flightsFromEdit.text
+
+        binding.flightsSwitchButton.setOnClickListener {
+
+            vm.departure.observe(viewLifecycleOwner){
+                //binding.flightsFromEdit.text.clear()
+                binding.flightsFromEdit.text = it
+                binding.flightsToEdit.text = vm.returning.value
             }
 
         }

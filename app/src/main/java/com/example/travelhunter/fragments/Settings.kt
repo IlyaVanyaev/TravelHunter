@@ -1,10 +1,14 @@
 package com.example.travelhunter.fragments
 
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.content.SharedPreferencesCompat
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
@@ -33,6 +37,7 @@ class Settings : Fragment() {
     ): View {
 
         binding = FragmentSettingsBinding.inflate(inflater, container, false)
+        binding.switch1.isChecked = vm.getTheme()
         return binding.root
 
     }
@@ -52,6 +57,20 @@ class Settings : Fragment() {
         binding.delete.setOnClickListener {
             dbvm.deleteAllFlights()
             dbvm.deleteAllHotels()
+        }
+
+        binding.switch1.setOnCheckedChangeListener{_, isChecked->
+            if (isChecked){
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+                vm.setDefaultBackGround(R.drawable.black_amoled)
+            }
+            else{
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+                vm.setDefaultBackGround(R.drawable.gradient_blue)
+            }
+
+            vm.saveTheme(isChecked)
+
         }
 
         binding.settingsLogOutButton.setOnClickListener { requireActivity().finish() }

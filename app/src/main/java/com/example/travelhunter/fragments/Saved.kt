@@ -56,7 +56,7 @@ class Saved : Fragment() {
         dbvm.getAllHotels.observe(viewLifecycleOwner){
 
             binding.emptySaves.visibility = View.GONE
-            if (it.isEmpty()) binding.emptySaves.visibility = View.VISIBLE
+            if (savedList.isEmpty()) binding.emptySaves.visibility = View.VISIBLE
 
             it?.let{
                 it.forEach {it1->
@@ -71,7 +71,7 @@ class Saved : Fragment() {
         dbvm.getAllFlights.observe(viewLifecycleOwner){
 
             binding.emptySaves.visibility = View.GONE
-            if (it.isEmpty()) binding.emptySaves.visibility = View.VISIBLE
+            if (savedList.isEmpty()) binding.emptySaves.visibility = View.VISIBLE
 
             it?.let{
                 it.forEach {it1->

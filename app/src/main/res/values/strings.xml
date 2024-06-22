@@ -15,7 +15,7 @@
 
     <string name="type_email">Введите email</string>
 
-    <string name="saved">Бронь</string>
+    <string name="saved">Избранные</string>
 
     <string name="flights">Авиабилеты</string>
 
@@ -62,5 +62,25 @@
     <string name="no_hotels">Список отелей пуст</string>
 
     <string name="change_data">Изменить данные</string>
+
+    <string name="type_url">Введите ссылку на изображение</string>
+
+    <string name="test_price">10000₽</string>
+
+    <string name="test_iata">MOW-AER</string>
+
+    <string name="departure">Отправка:</string>
+
+    <string name="arrival">Возврат:</string>
+
+    <string name="test_time">17:45\n2024-06-03</string>
+
+    <string name="test_label">Отель Сочи</string>
+
+    <string name="test_location">Россия, Сочи</string>
+
+    <string name="test_total_score">300000₽</string>
+
+    <string name="test_night_score">10000₽ за ночь</string>
 
 </resources>

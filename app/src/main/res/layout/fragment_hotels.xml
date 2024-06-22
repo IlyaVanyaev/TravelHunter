@@ -49,7 +49,7 @@
                 android:layout_width="300dp"
                 android:layout_height="50dp"
                 android:layout_marginTop="50dp"
-                app:cardBackgroundColor="@color/white_80"
+
                 app:cardCornerRadius="15dp"
                 app:cardElevation="@dimen/default_card_elevation"
                 app:layout_constraintEnd_toEndOf="parent"

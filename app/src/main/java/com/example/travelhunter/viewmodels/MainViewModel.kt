@@ -2,7 +2,9 @@ package com.example.travelhunter.viewmodels
 
 import android.annotation.SuppressLint
 import android.app.Application
+import android.content.Context
 import android.net.Uri
+import android.text.Editable
 import android.util.Log
 import android.widget.ImageView
 import android.widget.Toast
@@ -59,6 +61,10 @@ class MainViewModel (application: Application) : AndroidViewModel(application) {
 
     private var background = MutableLiveData<Int>()
     val getBackground: LiveData<Int> = background
+
+    var departure = MutableLiveData<Editable>()
+    var returning = MutableLiveData<Editable>()
+
 
 
     private var interceptor: HttpLoggingInterceptor = HttpLoggingInterceptor()
@@ -261,5 +267,19 @@ class MainViewModel (application: Application) : AndroidViewModel(application) {
     fun setDefaultBackGround(uri: Int){
         background.value = uri
     }
+
+
+    fun getTheme(): Boolean{
+        val sharedPreferences = getApplication<Application>().getSharedPreferences("Theme", Context.MODE_PRIVATE)
+        return sharedPreferences!!.getBoolean("isDarkTheme", false)
+    }
+
+    fun saveTheme(isDarkTheme: Boolean){
+        val sharedPreferences = getApplication<Application>().getSharedPreferences("Theme", Context.MODE_PRIVATE)
+        val editor = sharedPreferences?.edit()
+        editor?.putBoolean("isDarkTheme", isDarkTheme)
+        editor?.apply()
+    }
+
 
 }
