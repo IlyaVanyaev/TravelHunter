@@ -58,6 +58,10 @@ class SearchFlights : Fragment(), FlightListener, DateFlightListener {
 
         setRecyclerView()
 
+        binding.flightsNoFlightsImage.setOnClickListener {
+            vm.getIata(vm.getQuery.value!!, vm.getWithDate.value!!, vm.getDateTo.value!!, vm.getDateFrom.value!!)
+        }
+
         vm.getFlightList.observe(viewLifecycleOwner){
             binding.emptyFlights.visibility = View.GONE
             if (it == null) binding.emptyFlights.visibility = View.VISIBLE

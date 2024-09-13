@@ -27,4 +27,49 @@
 
     </style>
 
+
+    <style name="flight_edit_text">
+
+        <item name="android:layout_width">250dp</item>
+        <item name="android:layout_height">50dp</item>
+        <item name="android:background">@drawable/edit_shape</item>
+        <item name="android:inputType">text</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:textColor">@color/dark_blue</item>
+
+    </style>
+
+
+    <style name="hotel_edit_text">
+
+        <item name="android:layout_width">300dp</item>
+        <item name="android:layout_height">50dp</item>
+        <item name="android:background">@drawable/edit_shape</item>
+        <item name="android:inputType">text</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:textColor">@color/dark_blue</item>
+
+    </style>
+
+
+    <style name="placeholder_text">
+
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/white_80</item>
+        <item name="android:textAlignment">center</item>
+
+    </style>
+
+
+    <style name="clear_button">
+
+        <item name="android:layout_width">20dp</item>
+        <item name="android:layout_height">20dp</item>
+        <item name="android:src">@drawable/clear</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:visibility">gone</item>
+
+    </style>
+
 </resources>

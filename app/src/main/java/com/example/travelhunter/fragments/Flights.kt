@@ -3,6 +3,8 @@ package com.example.travelhunter.fragments
 import android.app.DatePickerDialog
 import android.icu.util.Calendar
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -60,6 +62,8 @@ class Flights : Fragment() {
                 val query = vm.setRoute(binding.flightsFromEdit.text.toString(), binding.flightsToEdit.text.toString())
                 vm.getIata(query, true, binding.flightsToDateText.text.toString(), binding.flightsFromDateText.text.toString())
                 vm.setWithDate(true)
+                vm.setQuery(query)
+                vm.setDate(binding.flightsToDateText.text.toString(), binding.flightsFromDateText.text.toString())
 
                 Navigation.findNavController(view).navigate(R.id.action_flights_to_searchFlights)
             }
@@ -68,6 +72,8 @@ class Flights : Fragment() {
 
                 vm.getIata(query, false, binding.flightsToDateText.text.toString(), binding.flightsFromDateText.text.toString())
                 vm.setWithDate(false)
+                vm.setQuery(query)
+                vm.setDate(binding.flightsToDateText.text.toString(), binding.flightsFromDateText.text.toString())
 
                 Navigation.findNavController(view).navigate(R.id.action_flights_to_searchFlights)
             }
@@ -76,18 +82,74 @@ class Flights : Fragment() {
             }
         }
 
-        vm.departure.value = binding.flightsToEdit.text
-        vm.returning.value = binding.flightsFromEdit.text
+
 
         binding.flightsSwitchButton.setOnClickListener {
 
+            vm.departure.value = binding.flightsToEdit.text
+            vm.returning.value = binding.flightsFromEdit.text
+
             vm.departure.observe(viewLifecycleOwner){
-                //binding.flightsFromEdit.text.clear()
                 binding.flightsFromEdit.text = it
                 binding.flightsToEdit.text = vm.returning.value
             }
 
         }
+
+        binding.flightsClearDepart.setOnClickListener {
+            binding.flightsFromEdit.text.clear()
+        }
+
+        binding.flightsClearDest.setOnClickListener {
+            binding.flightsToEdit.text.clear()
+        }
+
+
+        binding.flightsFromEdit.addTextChangedListener(object : TextWatcher{
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+
+            }
+
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                p0?.let {
+                    if (it.isNotEmpty()){
+                        binding.flightsClearDepart.visibility = View.VISIBLE
+                    }
+                    else {
+                        binding.flightsClearDepart.visibility = View.GONE
+                    }
+                }
+            }
+
+            override fun afterTextChanged(p0: Editable?) {
+
+            }
+
+        })
+
+        binding.flightsToEdit.addTextChangedListener(object : TextWatcher{
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+
+            }
+
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                p0?.let {
+                    if (it.isNotEmpty()){
+                        binding.flightsClearDest.visibility = View.VISIBLE
+                    }
+                    else {
+                        binding.flightsClearDest.visibility = View.GONE
+                    }
+                }
+            }
+
+            override fun afterTextChanged(p0: Editable?) {
+
+            }
+
+        })
+
+
     }
 
     private fun datePicker(textView: TextView) {

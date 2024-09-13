@@ -53,6 +53,23 @@ class MainViewModel (application: Application) : AndroidViewModel(application) {
     private var withDate = MutableLiveData<Boolean>()
     val getWithDate : LiveData<Boolean> = withDate
 
+
+    private var query = MutableLiveData<String>()
+    val getQuery : LiveData<String> = query
+
+
+    private var dateFrom = MutableLiveData<String>()
+    val getDateFrom : LiveData<String> =dateFrom
+
+
+    private var dateTo = MutableLiveData<String>()
+    val getDateTo : LiveData<String> = dateTo
+
+
+    private var city = MutableLiveData<String>()
+    val getCity : LiveData<String> = city
+
+
     private var hotelLabels = MutableLiveData<List<Hotels>>()
     val getHotelLabels: LiveData<List<Hotels>> = hotelLabels
 
@@ -98,6 +115,19 @@ class MainViewModel (application: Application) : AndroidViewModel(application) {
 
     fun setWithDate(with: Boolean){
         withDate.value = with
+    }
+
+    fun setQuery(query: String){
+        this.query.value = query
+    }
+
+    fun setDate(dateTo: String, dateFrom: String){
+        this.dateTo.value = dateTo
+        this.dateFrom.value = dateFrom
+    }
+
+    fun setCity(city: String){
+        this.city.value = city
     }
 
 
@@ -204,9 +234,9 @@ class MainViewModel (application: Application) : AndroidViewModel(application) {
         val flightList = ArrayList<DateFlight>()
         val json = JSONObject(response)
         val dateFlight = DateFlight(
-            json.getJSONObject("data").getJSONObject(iata.value?.destinationIata!!.iata).getJSONObject("0").getString("departure_at"),
-            json.getJSONObject("data").getJSONObject(iata.value?.destinationIata!!.iata).getJSONObject("0").getString("return_at"),
-            json.getJSONObject("data").getJSONObject(iata.value?.destinationIata!!.iata).getJSONObject("0").getInt("price"),
+            json.getJSONObject("data").getJSONObject(iata.value?.destinationIata!!.iata).getJSONObject("1").getString("departure_at"),
+            json.getJSONObject("data").getJSONObject(iata.value?.destinationIata!!.iata).getJSONObject("1").getString("return_at"),
+            json.getJSONObject("data").getJSONObject(iata.value?.destinationIata!!.iata).getJSONObject("1").getInt("price"),
             test.originIata.iata,
             test.destinationIata.iata
         )

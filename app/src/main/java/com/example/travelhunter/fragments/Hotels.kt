@@ -1,6 +1,8 @@
 package com.example.travelhunter.fragments
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -40,12 +42,40 @@ class Hotels : Fragment() {
 
             if (binding.hotelsCityEdit.text.isNotEmpty()){
 
-                vm.getHotels(binding.hotelsCityEdit.text.toString())
+                //vm.getHotels(binding.hotelsCityEdit.text.toString())
+                vm.setCity(binding.hotelsCityEdit.text.toString())
 
                 Navigation.findNavController(view).navigate(R.id.action_hotels_to_searchHotels)
             }
 
         }
+
+        binding.hotelsClearCity.setOnClickListener {
+            binding.hotelsCityEdit.text.clear()
+        }
+
+        binding.hotelsCityEdit.addTextChangedListener(object : TextWatcher{
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+
+            }
+
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                p0?.let {
+                    if (it.isNotEmpty()){
+                        binding.hotelsClearCity.visibility = View.VISIBLE
+                    }
+                    else {
+                        binding.hotelsClearCity.visibility = View.GONE
+                    }
+                }
+            }
+
+            override fun afterTextChanged(p0: Editable?) {
+
+            }
+
+        })
+
     }
 
 

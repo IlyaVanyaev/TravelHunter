@@ -44,34 +44,41 @@
 
             <EditText
                 android:id="@+id/flights_from_edit"
-                android:layout_width="250dp"
-                android:layout_height="50dp"
+                style="@style/flight_edit_text"
                 android:layout_marginTop="25dp"
                 android:layout_marginBottom="25dp"
-                android:background="@drawable/edit_shape"
                 android:hint="@string/city_from"
-                android:inputType="text"
-                android:textAlignment="center"
-                android:textColor="@color/dark_blue"
                 app:layout_constraintBottom_toTopOf="@+id/flights_to_edit"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
 
+            <ImageButton
+                android:id="@+id/flights_clear_depart"
+                style="@style/clear_button"
+                android:layout_marginEnd="20dp"
+                app:layout_constraintBottom_toBottomOf="@+id/flights_from_edit"
+                app:layout_constraintEnd_toEndOf="@+id/flights_from_edit"
+                app:layout_constraintTop_toTopOf="@+id/flights_from_edit" />
+
             <EditText
                 android:id="@+id/flights_to_edit"
-                android:layout_width="250dp"
-                android:layout_height="50dp"
+                style="@style/flight_edit_text"
                 android:layout_marginBottom="35dp"
-                android:background="@drawable/edit_shape"
                 android:hint="@string/city_to"
-                android:inputType="text"
-                android:textAlignment="center"
-                android:textColor="@color/dark_blue"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
+
+
+            <ImageButton
+                android:id="@+id/flights_clear_dest"
+                style="@style/clear_button"
+                android:layout_marginEnd="20dp"
+                app:layout_constraintBottom_toBottomOf="@+id/flights_to_edit"
+                app:layout_constraintEnd_toEndOf="@+id/flights_to_edit"
+                app:layout_constraintTop_toTopOf="@+id/flights_to_edit" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -121,7 +128,8 @@
                     android:layout_marginTop="10dp"
                     android:hint="@string/date_to"
                     android:textAlignment="center"
-                    android:textSize="18sp" />
+                    android:textSize="18sp"
+                    android:textColor="@color/dark_blue"/>
 
             </androidx.cardview.widget.CardView>
 
@@ -146,7 +154,8 @@
                     android:layout_marginTop="10dp"
                     android:hint="@string/date_from"
                     android:textAlignment="center"
-                    android:textSize="18sp" />
+                    android:textSize="18sp"
+                    android:textColor="@color/dark_blue"/>
 
             </androidx.cardview.widget.CardView>
 

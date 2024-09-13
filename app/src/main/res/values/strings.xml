@@ -83,4 +83,6 @@
 
     <string name="test_night_score">10000₽ за ночь</string>
 
+    <string name="restart">Нажмите, чтобы перезапустить</string>
+
 </resources>

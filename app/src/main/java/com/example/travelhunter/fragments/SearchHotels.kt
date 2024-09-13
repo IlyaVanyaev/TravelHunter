@@ -53,6 +53,10 @@ class SearchHotels : Fragment(), HotelListener {
 
         setRecyclerView()
 
+        binding.hotelsNoHotelsImage.setOnClickListener {
+            vm.getHotels(vm.getCity.value!!)
+        }
+
         vm.getHotelLabels.observe(viewLifecycleOwner){
             binding.emptyHotels.visibility = View.GONE
             if (it == null) binding.emptyHotels.visibility = View.VISIBLE
